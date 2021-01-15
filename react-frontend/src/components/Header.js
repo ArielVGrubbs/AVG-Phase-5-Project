@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 
-const handleLoginRender = (isLoggedIn) => {
-    // useEffect
+const Header = (props) => {
 
+  const handleLoginRender = (isLoggedIn) => {
     if(isLoggedIn){
         return (
             <NavLink to="/logout"> Logout </NavLink>
@@ -18,9 +18,7 @@ const handleLoginRender = (isLoggedIn) => {
         </>
         )
     }
-}
-
-const Header = (props) => {
+  }
 
   return (
     <div className='navbar'>
@@ -29,7 +27,7 @@ const Header = (props) => {
         <NavLink to="/"> Search Bar </NavLink>
         <NavLink to="/new_post"> Create Post </NavLink>
         {
-          handleLoginRender(props.isLoggedIn)
+          handleLoginRender(localStorage.getItem('auth_key') !== 'undefined')
         }
       </ul>
     </div>

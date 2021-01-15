@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     minWidth: 200,
-    width: 819.7,
+    width: 719.7,
     // height:450,
     padding: 5,
     display: 'flex',

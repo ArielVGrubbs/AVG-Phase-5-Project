@@ -30,7 +30,7 @@ function PostList() {
     <React.Fragment>
         <Grid container className={classes.pList} spacing={2}>
             {
-            posts.map(post => <PostCard post={post}/>)
+            posts.map(post => <PostCard key={post.id} post={post}/>)
             }
         </Grid>
     </React.Fragment>

@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import PostList from './PostList'
 
 function Dashboard() {
+
     return (
         <React.Fragment>
             <Header />

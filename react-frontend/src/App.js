@@ -6,6 +6,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from "react-router-dom
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './containers/Dashboard';
+import NewPostPage from './components/NewPostPage'
 // import Header from './components/Header'
 
 
@@ -55,6 +56,10 @@ function App() {
           
           <Route path="/sign_up" component={() => {
             return <SignUp />
+          }}/>
+
+          <Route path="/sign_up" component={() => {
+            return <NewPostPage />
           }}/>
 
           <Route path="/logout" component={() => {
