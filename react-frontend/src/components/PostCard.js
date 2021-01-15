@@ -72,7 +72,7 @@ function PostCard(props) {
 
   return (
     <React.Fragment>
-        {(props.post.postable_type === "Channel") ? 
+        
             <Grid item key={props.post.id}>
                 <Card className={classes.card}>
                 {/* <CardMedia className={classes.cardMedia} image={props.post.image_url} title={props.post.name} /> */}
@@ -92,6 +92,9 @@ function PostCard(props) {
                         </Typography>
                         <br />
                         <Typography>
+                            Title: {props.post.title}
+                        </Typography>
+                        <Typography>
                             Content: {props.post.content}
                         </Typography>
                         <Typography>
@@ -103,7 +106,6 @@ function PostCard(props) {
                     </CardContent>
                 </Card>
             </Grid>
-            : null }
     </React.Fragment>
   )
 }

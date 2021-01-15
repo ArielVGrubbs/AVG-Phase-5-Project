@@ -9,10 +9,10 @@ ariel_meme = ChannelOwner.create(user_id:ariel.id, channel_id:r_slash_memes.id)
 ariel_meme_memb = ChannelMember.create(user_id:ariel.id, channel_id:r_slash_memes.id)
 tony_meme_memb = ChannelMember.create(user_id:tony.id, channel_id:r_slash_memes.id)
 
-shit_post1 = Post.create(content:"It's the beginning of time as far as memes are concerned", user_id:ariel.id, postable:r_slash_memes)
+shit_post1 = Post.create(title:'New day on a new social media platform', content:"It's the beginning of time as far as memes are concerned", user_id:ariel.id, postable:r_slash_memes)
 reply1 = Post.create(content:"Yeah, we're basically inventing memes right here and now!", user_id:tony.id, postable:shit_post1)
 
-shit_post2 = Post.create(content:"Let there be PEPE!!!", user_id:tony.id, postable:r_slash_memes)
+shit_post2 = Post.create(title:"creation of the memeverse", content:"Let there be PEPE!!!", user_id:tony.id, postable:r_slash_memes)
 reply2 = Post.create(content:"And lo, we saw that it was good", user_id:ariel.id, postable:shit_post2)
 lvl_two_reply1 = Post.create(content:"Whoo! all this pioneering is tiring, let's take an early weekend.", user_id:tony.id, postable:reply2)
 

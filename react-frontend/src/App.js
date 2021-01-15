@@ -20,12 +20,24 @@ function App() {
       .then(data => {
         dispatch({type: 'GET_USERS', users: data})
       })
-      // fetch('http://localhost:3000/channels')
-      // .then(res => res.json())
-      // .then(data => {
-      //   // dispatch({type: 'GET_CHANNELS', channels: data})
-      // })
-      fetch('http://localhost:3000/posts')
+      fetch('http://localhost:3000/channels', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Auth-key': localStorage.getItem('auth_key')
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        dispatch({type: 'GET_CHANNELS', channels: data})
+      })
+      fetch('http://localhost:3000/posts', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Auth-key': localStorage.getItem('auth_key')
+        }
+      })
       .then(res => res.json())
       .then(data => {
         dispatch({type: 'GET_POSTS', posts: data})
@@ -58,7 +70,7 @@ function App() {
             return <SignUp />
           }}/>
 
-          <Route path="/sign_up" component={() => {
+          <Route path="/new_post" component={() => {
             return <NewPostPage />
           }}/>
 

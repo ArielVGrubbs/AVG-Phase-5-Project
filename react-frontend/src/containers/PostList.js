@@ -30,7 +30,7 @@ function PostList() {
     <React.Fragment>
         <Grid container className={classes.pList} spacing={2}>
             {
-            posts.map(post => <PostCard key={post.id} post={post}/>)
+            posts.map(post => {if (post.postable_type === "Channel") { return <PostCard key={post.id} post={post}/>}else{return null}})
             }
         </Grid>
     </React.Fragment>
