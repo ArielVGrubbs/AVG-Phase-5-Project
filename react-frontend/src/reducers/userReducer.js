@@ -3,8 +3,7 @@ const initialState = {
     allUsers: [],
     currentUser: {
         password: '',
-        firstname: '',
-        lastname: '',
+        username: '',
         email: ''
     }
 }
@@ -31,21 +30,21 @@ const userReducer = (state = initialState, action) => {
                 currentUser: action.user
             }
         }
-        case 'SIGN_UP':{
-            return {
-                ...state,
-                isLoggedIn: true,
-                currentUser: action.user
-                // allUsers: [...state.allUsers, action.user]
-            }
-        }
-        case 'UPDATE_CURRENT_USER':{
-            return {
-                ...state,
-                isLoggedIn: true,
-                currentUser: action.user
-            }
-        }
+        // case 'SIGN_UP':{
+        //     return {
+        //         ...state,
+        //         isLoggedIn: true,
+        //         currentUser: action.user
+        //         // allUsers: [...state.allUsers, action.user]
+        //     }
+        // }
+        // case 'UPDATE_CURRENT_USER':{
+        //     return {
+        //         ...state,
+        //         isLoggedIn: true,
+        //         currentUser: action.user
+        //     }
+        // }
         default:
             return state;
   
