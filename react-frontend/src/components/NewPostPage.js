@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import {useSelector, useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 import Header from './Header'
 
@@ -33,14 +34,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NewPostPage() {
-    const classes = useStyles()
+    const classes = useStyles();
+    const history = useHistory();
+    const dispatch = useDispatch();
 
     const channels = useSelector(state => state.channels.allChannels)
 
+    const clearForm = (e) => {
+        e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value = null
+        e.target.querySelector("#title").value = ''
+        e.target.querySelector("#content").value = ''
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        debugger
         let channel = channels.find(c => c.title === e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value)
+        // debugger
         fetch('http://localhost:3000/posts', {
             method: 'POST',
             headers: {
@@ -49,14 +58,20 @@ function NewPostPage() {
             },
             body: JSON.stringify({
                 postable_type: "Channel",
-                postably_id: channel.id,
+                postable_id: channel.id,
                 title: e.target.querySelector("#title").value,
                 content: e.target.querySelector("#content").value,
                 user_id: localStorage.getItem('auth_key')
             })
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data)
+            data.postable = {title:e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value}
+            dispatch({type:'ADD_POST', post: data})
+            clearForm(e)
+            history.push('/dashboard')
+        })
     }
     return (
         <div>

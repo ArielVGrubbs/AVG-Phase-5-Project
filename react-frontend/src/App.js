@@ -24,7 +24,7 @@ function App() {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Auth-key': localStorage.getItem('auth_key')
+          // 'Auth-key': localStorage.getItem('auth_key')
         }
       })
       .then(res => res.json())
@@ -35,7 +35,7 @@ function App() {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Auth-key': localStorage.getItem('auth_key')
+          // 'Auth-key': localStorage.getItem('auth_key')
         }
       })
       .then(res => res.json())

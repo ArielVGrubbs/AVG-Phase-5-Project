@@ -73,6 +73,9 @@ function LoginForm() {
     .then(token => {
       localStorage.setItem('auth_key',token['auth_key'])
       console.log(token)
+      newUser.email = token['user_id']
+      // newUser.password = null
+      dispatch({type: 'LOGIN', user: newUser})
       history.push('/dashboard')
     })
     

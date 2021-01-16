@@ -19,8 +19,8 @@ class PostsController < ApplicationController
     def create
         authenticate!
         post = Post.new(post_params)
-        post.user_id = current_user[:id]
-        byebug
+        post.user_id = current_user.id
+        # byebug
         if post.save
             render json: post#, :status => :ok
         else

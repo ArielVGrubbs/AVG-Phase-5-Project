@@ -70,6 +70,8 @@ function PostCard(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const currentUser = useSelector(state => state.user.currentUser)
+
   return (
     <React.Fragment>
         
@@ -81,14 +83,14 @@ function PostCard(props) {
                         <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
                             <ArrowDropUpIcon />
                         </Button>
-                        <Box>{ props.post.likes.length}</Box>
+                        <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
                         <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
                             <ArrowDropDownIcon ml={0}/>
                         </Button>
                     </div>
                     <CardContent className={classes.cardContent}>
                         <Typography>
-                            Channel: {props.post.postable.title}
+                            Channel: {(props.post.postable) ? props.post.postable.title : null}
                         </Typography>
                         <br />
                         <Typography>
@@ -98,10 +100,10 @@ function PostCard(props) {
                             Content: {props.post.content}
                         </Typography>
                         <Typography>
-                            Posting User: {props.post.user.username}
+                            Posting User: {(props.post.user) ? props.post.user.username : currentUser.username}
                         </Typography>
                         <Typography>
-                            # of replies: {props.post.posts.length}
+                            # of replies: {(props.post.posts) ? props.post.posts.length : 0}
                         </Typography>
                     </CardContent>
                 </Card>
