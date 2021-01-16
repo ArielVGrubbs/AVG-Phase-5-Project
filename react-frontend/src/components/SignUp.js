@@ -47,11 +47,6 @@ function SignUp() {
 
   let history = useHistory();
 
-//   const currentUser = useSelector(state => state.user.currentUser)
-  // const allUsers = useSelector(state => state.user.allUsers)
-  
-//   const [user, setUser] = useState(currentUser);
-
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
