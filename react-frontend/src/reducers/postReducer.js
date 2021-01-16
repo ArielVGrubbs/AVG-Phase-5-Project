@@ -1,5 +1,6 @@
 const initialState = {
-    allPosts: []
+    allPosts: [],
+    newPost: {},
 }
 
 const postReducer = (state = initialState, action) => {
@@ -8,6 +9,13 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allPosts: action.posts
+            }
+        }
+        case 'ADD_POST': {
+            return {
+                ...state,
+                allPosts: [...state.allPosts, action.post],
+                newPost: action.post
             }
         }
         default:

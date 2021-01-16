@@ -47,11 +47,6 @@ function SignUp() {
 
   let history = useHistory();
 
-//   const currentUser = useSelector(state => state.user.currentUser)
-  // const allUsers = useSelector(state => state.user.allUsers)
-  
-//   const [user, setUser] = useState(currentUser);
-
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -73,40 +68,10 @@ function SignUp() {
     }).then(res => res.json())
     .then(userObj => {
       console.log(userObj)
+      localStorage.setItem('auth_key',userObj['auth_key'])
+      dispatch({type: 'LOGIN', user: newUser.user})
       history.push('/dashboard')
     })
-
-    // let emailVar = e.target.querySelector('#email').value
-    // let passwordVar = e.target.querySelector('#password').value
-    // let firstNameVar = e.target.querySelector('#firstName').value
-    // let lastNameVar = e.target.querySelector('#lastName').value
-
-    // fetch('http://localhost:3000/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     "email": emailVar,
-    //     "password": passwordVar,
-    //     "firstname": firstNameVar,
-    //     "lastname": lastNameVar
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then((data) => {
-      
-    //   let tempUser = {
-    //     email: data.email,
-    //     password: data.password,
-    //     firstname: data.firstname,
-    //     lastname: data.lastname
-    //   }
-    //   setUser(tempUser)
-    //   dispatch(login(data))
-    //   setLocalCurrentUser(tempUser)
-    //   history.push('/dashboard')
-    // })
   }
 
   // useEffect(() => {
