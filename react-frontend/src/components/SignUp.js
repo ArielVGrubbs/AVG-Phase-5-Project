@@ -69,7 +69,8 @@ function SignUp() {
     .then(userObj => {
       console.log(userObj)
       localStorage.setItem('auth_key',userObj['auth_key'])
-      dispatch({type: 'LOGIN', user: newUser.user})
+      localStorage.setItem('currentUserUsername', newUser.username)
+      dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
       history.push('/dashboard')
     })
   }

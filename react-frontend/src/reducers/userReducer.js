@@ -24,10 +24,11 @@ const userReducer = (state = initialState, action) => {
             }
         }
         case 'LOGIN':{
+            let cU = state.allUsers.find(user => user.username === action.username)
             return {
                 ...state,
                 isLoggedIn: true,
-                currentUser: action.user
+                currentUser: cU
             }
         }
         // case 'SIGN_UP':{

@@ -29,9 +29,15 @@ class PostsController < ApplicationController
     end
 
     def update
+        authenticate!
         post = Post.find(params[:id])
-        post.update_attributes(post_params)
-        render json: post
+        if post.user_id == current_user.id
+            post.update_attributes(post_params)
+            post.save
+            render json: post
+        else
+            render json: { message: 'The credentials you have presented are not authorized to edit this post, please be sure to be logged in appropriately.' }
+        end
     end
 
     def destroy

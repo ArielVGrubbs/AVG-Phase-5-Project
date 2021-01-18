@@ -22,6 +22,7 @@ class ChannelOwnersController < ApplicationController
     def update
         channel_owner = ChannelOwner.find(params[:id])
         channel_owner.update_attributes(channel_owner_params)
+        channel_owner.save
         render json: channel_owner
     end
 

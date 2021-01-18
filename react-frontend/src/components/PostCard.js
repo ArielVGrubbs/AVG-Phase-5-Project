@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 // import { useHistory } from "react-router-dom";
@@ -63,6 +63,10 @@ const useStyles = makeStyles((theme) => ({
   brandLink: {
     color: '#212121',
     textDecoration: 'none'
+  },
+  buttons: {
+    display: 'block',
+    width: 83
   }
 }));
 
@@ -72,33 +76,96 @@ function PostCard(props) {
 
   const currentUser = useSelector(state => state.user.currentUser)
 
+  const [editForm, setEditForm] = useState(false)
+  const [formTitle, setFormTitle] = useState(props.post.title)
+  const [formContent, setFormContent] = useState(props.post.content)
+
+  const handleStartEdit = (e) => {
+    setEditForm(true)
+  }
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    fetch(`http://localhost:3000/posts/${props.post.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Auth-Key': localStorage.getItem('auth_key')
+      },
+      body: JSON.stringify({
+        title: formTitle,
+        content: formContent
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        // dispatch({type:'UPDATE_POST', post: data})
+        setEditForm(false)
+    })
+  }
+
+  const handleDelete = (e) => {
+    fetch(`http://localhost:3000/posts/${props.post.id}`, {
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch({type:'DELETE_POST', post:data})
+    })
+  }
+
+  const handleFormChange = (e) => {
+    if (e.target.id === 'title'){
+      setFormTitle(e.target.value)
+    } else {
+      setFormContent(e.target.value)
+    }
+  }
+
+  // const handleContentChange = (e) => {
+  //   setFormContent(e.target.value)
+  // }
+
   return (
     <React.Fragment>
         
             <Grid item key={props.post.id}>
                 <Card className={classes.card}>
-                {/* <CardMedia className={classes.cardMedia} image={props.post.image_url} title={props.post.name} /> */}
-                    <div className={classes.cardActions}>
-
-                        <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
-                            <ArrowDropUpIcon />
-                        </Button>
-                        <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
-                        <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
-                            <ArrowDropDownIcon ml={0}/>
-                        </Button>
-                    </div>
+                    {(props.userPage) ? <div className={classes.cardActions}>
+                    <Button onClick={(e) => handleStartEdit(e)} size='medium' variant="contained" color="primary" className={classes.buttons}>
+                      Edit
+                    </Button>
+                    <br />
+                    <Button onClick={(e) => handleDelete(e)} size='medium' variant="contained" color="primary" ml={0}>
+                      Delete
+                    </Button>
+                    <Box>Likes: { (props.post.likes) ? props.post.likes.length : 0}</Box>
+                    </div> : <div className={classes.cardActions}>
+                    <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
+                      <ArrowDropUpIcon />
+                    </Button>
+                    <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
+                    <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
+                      <ArrowDropDownIcon ml={0}/>
+                    </Button></div>}
                     <CardContent className={classes.cardContent}>
                         <Typography>
                             Channel: {(props.post.postable) ? props.post.postable.title : null}
                         </Typography>
                         <br />
-                        <Typography>
-                            Title: {props.post.title}
+                        {(!editForm) ? <div><Typography>
+                            Title: {formTitle}
                         </Typography>
                         <Typography>
-                            Content: {props.post.content}
-                        </Typography>
+                            Content: {formContent}
+                        </Typography></div> : 
+                        <form onSubmit={(e) => handleFormSubmit(e)}>
+                          <input placeholder='Title' id="title" style={{width: 600}} value={formTitle} onChange={(e) => handleFormChange(e)}/>
+                          <input placeholder='Text' id="content" style={{width: 600, height: 165}} value={formContent} onChange={(e) => handleFormChange(e)}/>
+                          <button type="submit">Post</button>
+                        </form>}
                         <Typography>
                             Posting User: {(props.post.user) ? props.post.user.username : currentUser.username}
                         </Typography>

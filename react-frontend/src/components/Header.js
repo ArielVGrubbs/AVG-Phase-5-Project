@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   header: {
     display: 'flex',
+    color: 'black'
   },
   topRibbon: {
     display: 'flex'
@@ -15,17 +17,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = (props) => {
   const classes = useStyles();
+  const currentUser = useSelector(state => state.user.currentUser)
 
   const handleLoginRender = (isLoggedIn) => {
     if(isLoggedIn){
         return (
-            <NavLink to="/logout"> Logout </NavLink>
+          <React.Fragment>
+            <Link to="/logout"> Logout </Link>
+            <Link to={`/user/${currentUser.username}`}> Profile </Link>
+          </React.Fragment>
         )
     }else{
         return(
         <>
-            <NavLink to="/login"> Login </NavLink>
-            <NavLink to="/sign_up"> Sign Up </NavLink>
+            <Link to="/login"> Login </Link>
+            <Link to="/sign_up"> Sign Up </Link>
         </>
         )
     }
@@ -33,10 +39,10 @@ const Header = (props) => {
 
   return (
     <div className={classes.header}>
-      <div className={classes.header}> <ChildCareIcon/>Readit </div>
+      <Link className={classes.header} to="/dashboard"> <ChildCareIcon/>Readit </Link>
       <ul>
-        <NavLink to="/"> Search Bar </NavLink>
-        <NavLink to="/new_post"> Create Post </NavLink>
+        <Link to="/"> Search Bar </Link>
+        <Link to="/new_post"> Create Post </Link>
         {
           handleLoginRender(localStorage.getItem('auth_key') !== 'undefined')
         }

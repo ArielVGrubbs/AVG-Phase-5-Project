@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     def update
         user = User.find(params[:id])
         user.update_attributes(user_params)
+        user.save
         render json: user
     end
 

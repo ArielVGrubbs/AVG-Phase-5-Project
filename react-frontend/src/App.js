@@ -7,6 +7,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import Dashboard from './containers/Dashboard';
 import NewPostPage from './components/NewPostPage'
+import UserPage from './components/UserPage'
 // import Header from './components/Header'
 
 
@@ -19,6 +20,7 @@ function App() {
       .then(res => res.json())
       .then(data => {
         dispatch({type: 'GET_USERS', users: data})
+        dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
       })
       fetch('http://localhost:3000/channels', {
         method: 'GET',
@@ -74,8 +76,13 @@ function App() {
             return <NewPostPage />
           }}/>
 
+          <Route path="/user/:username" component={() => {
+            return <UserPage />
+          }}/>
+
           <Route path="/logout" component={() => {
             localStorage.setItem('auth_key','undefined')
+            localStorage.setItem('currentUserUsername', 'undefined')
             return <Redirect to='/login' />
           }}/>
 
