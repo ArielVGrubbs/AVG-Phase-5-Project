@@ -19,9 +19,10 @@ const postReducer = (state = initialState, action) => {
             }
         }
         case 'UPDATE_POST': {
+            let newAllPosts = state.allPosts.filter(post => post.id !== action.post.id)
             return {
                 ...state,
-                allPosts: [...state.allPosts, action.post]
+                allPosts: [...newAllPosts, action.post]
             }
         }
         case 'DELETE_POST': {

@@ -32,7 +32,6 @@ const UserPage = () => {
     let userPosts = allPosts.filter(post => post.user.username === user.username)
 
     useEffect(() => {
-        // dispatch({type:'DELETE_POST', posts:allPosts})
         setAllPosts(posts)
     }, [posts])
 
