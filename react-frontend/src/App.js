@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Dashboard from './containers/Dashboard';
 import NewPostPage from './components/NewPostPage'
 import UserPage from './components/UserPage'
+import PostPage from './components/PostPage';
 // import Header from './components/Header'
 
 
@@ -109,6 +110,10 @@ function App() {
 
           <Route path="/user/:username" component={() => {
             return <UserPage />
+          }}/>
+
+          <Route path="/posts/:post_id" component={() => {
+            return <PostPage />
           }}/>
 
           <Route path="/logout" component={() => {

@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function PostCard(props) {
+function ReplyCard(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -153,9 +153,6 @@ function PostCard(props) {
                       <ArrowDropDownIcon ml={0}/>
                     </Button></div>}
                     <CardContent className={classes.cardContent} onClick={() => history.push(`./posts/${props.post.id}`)}>
-                        <Typography>
-                            Channel: {(props.post.postable) ? props.post.postable.title : null}
-                        </Typography>
                         <br />
                         {(!editForm) ? <div><Typography>
                             Title: {formTitle}
@@ -180,4 +177,4 @@ function PostCard(props) {
     </React.Fragment>
   )
 }
-export default PostCard;
+export default ReplyCard;
