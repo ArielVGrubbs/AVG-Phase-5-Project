@@ -28,7 +28,7 @@ const postReducer = (state = initialState, action) => {
             let newAllPosts = state.allPosts.filter(post => post.id !== action.post.id)
             return {
                 ...state,
-                allPosts: [newAllPosts]
+                allPosts: [...newAllPosts]
             }
         }
         default:

@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   topRibbon: {
     display: 'flex',
     margin: theme.spacing(0,0,0,2),
+  },
+  textInputs: {
+      display: 'block'
   }
 }));
 
@@ -39,6 +42,7 @@ function NewPostPage() {
     const dispatch = useDispatch();
 
     const channels = useSelector(state => state.channels.allChannels)
+    const posts = useSelector(state => state.posts.allPosts)
 
     const clearForm = (e) => {
         e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value = null
@@ -67,6 +71,7 @@ function NewPostPage() {
         .then(res => res.json())
         .then(data => {
             console.log(data)
+            console.log(posts)
             data.postable = {title:e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value}
             dispatch({type:'ADD_POST', post: data})
             clearForm(e)
@@ -88,7 +93,7 @@ function NewPostPage() {
                     style={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} label="Choose a community" variant="outlined" />}
                 />
-                <input placeholder='Title' id="title" style={{width: 627}}/>
+                <input placeholder='Title' id="title" style={{width: 627}} className={classes.textInputs}/>
                 <input placeholder='Text' id="content" style={{width: 627, height: 200}}/>
                 <button type="submit">Post</button>
                 {/* <Checkbox

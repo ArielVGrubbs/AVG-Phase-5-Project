@@ -16,34 +16,65 @@ function App() {
   const dispatch = useDispatch()
 
     useEffect(()=> {
+      let users
+      let channels
+
       fetch('http://localhost:3000/users')
       .then(res => res.json())
       .then(data => {
-        dispatch({type: 'GET_USERS', users: data})
-        dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
-      })
-      fetch('http://localhost:3000/channels', {
+        users = data
+        // dispatch({type: 'GET_USERS', users: data})
+        // dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
+        fetch('http://localhost:3000/channels', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           // 'Auth-key': localStorage.getItem('auth_key')
         }
+        })
+        .then(res => res.json())
+        .then(data => {
+          channels = data
+          // dispatch({type: 'GET_CHANNELS', channels: data})
+          fetch('http://localhost:3000/posts', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              // 'Auth-key': localStorage.getItem('auth_key')
+            }
+          })
+          .then(res => res.json())
+          .then(data => {
+            dispatch({type: 'GET_POSTS', posts: data})
+            dispatch({type: 'GET_CHANNELS', channels: channels})
+            dispatch({type: 'GET_USERS', users: users})
+            dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
+            console.log("All fetches done")
+          })
+        })
       })
-      .then(res => res.json())
-      .then(data => {
-        dispatch({type: 'GET_CHANNELS', channels: data})
-      })
-      fetch('http://localhost:3000/posts', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Auth-key': localStorage.getItem('auth_key')
-        }
-      })
-      .then(res => res.json())
-      .then(data => {
-        dispatch({type: 'GET_POSTS', posts: data})
-      })
+      // fetch('http://localhost:3000/channels', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     // 'Auth-key': localStorage.getItem('auth_key')
+      //   }
+      // })
+      // .then(res => res.json())
+      // .then(data => {
+      //   dispatch({type: 'GET_CHANNELS', channels: data})
+      // })
+      // fetch('http://localhost:3000/posts', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     // 'Auth-key': localStorage.getItem('auth_key')
+      //   }
+      // })
+      // .then(res => res.json())
+      // .then(data => {
+      //   dispatch({type: 'GET_POSTS', posts: data})
+      // })
     }, [])
 
   const users = useSelector(state => state.user.allUsers)

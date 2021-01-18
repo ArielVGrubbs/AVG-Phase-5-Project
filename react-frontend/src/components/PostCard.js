@@ -105,15 +105,15 @@ function PostCard(props) {
     })
   }
 
-  const handleDelete = (e) => {
+  const handleDelete = () => {
     fetch(`http://localhost:3000/posts/${props.post.id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      dispatch({type:'DELETE_POST', post:data})
-    })
+    dispatch({type:'DELETE_POST', post:props.post})
+    props.deletePost(props.post)
   }
 
   const handleFormChange = (e) => {
@@ -138,7 +138,7 @@ function PostCard(props) {
                       Edit
                     </Button>
                     <br />
-                    <Button onClick={(e) => handleDelete(e)} size='medium' variant="contained" color="primary" ml={0}>
+                    <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
                       Delete
                     </Button>
                     <Box>Likes: { (props.post.likes) ? props.post.likes.length : 0}</Box>

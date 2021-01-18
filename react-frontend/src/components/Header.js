@@ -24,7 +24,7 @@ const Header = (props) => {
         return (
           <React.Fragment>
             <Link to="/logout"> Logout </Link>
-            <Link to={`/user/${currentUser.username}`}> Profile </Link>
+            <Link to={`/user/${localStorage.getItem('currentUserUsername')}`}> Profile </Link>
           </React.Fragment>
         )
     }else{
