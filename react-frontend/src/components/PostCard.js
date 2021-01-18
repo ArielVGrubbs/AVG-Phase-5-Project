@@ -67,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
   buttons: {
     display: 'block',
     width: 83
+  },
+  titleLink: {
+    color: 'black',
+    textDecoration: 'none',
+    fontWeight: 'bold'
   }
 }));
 
@@ -152,13 +157,13 @@ function PostCard(props) {
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
                       <ArrowDropDownIcon ml={0}/>
                     </Button></div>}
-                    <CardContent className={classes.cardContent} onClick={() => history.push(`./posts/${props.post.id}`)}>
+                    <CardContent className={classes.cardContent} >
                         <Typography>
                             Channel: {(props.post.postable) ? props.post.postable.title : null}
                         </Typography>
                         <br />
                         {(!editForm) ? <div><Typography>
-                            Title: {formTitle}
+                            <Link to={`/posts/${props.post.id}`} className={classes.titleLink}>Title: {formTitle}</Link>
                         </Typography>
                         <Typography>
                             Content: {formContent}

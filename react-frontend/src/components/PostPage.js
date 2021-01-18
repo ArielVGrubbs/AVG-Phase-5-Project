@@ -31,9 +31,16 @@ const PostPage = (props) => {
   return (
     <div>
         <Header />
-        {(currentPost) ? <p>Post Page {currentPost.id}</p> : null}
-        <PostCard key={currentPost.id} post={currentPost}/>
-        {currentPost.posts.map(post => <ReplyCard key={post.id} post={post}/>)}
+        {(currentPost) ? <div>
+            <p>Post Page {currentPost.id}</p> 
+            <PostCard key={currentPost.id} post={currentPost}/>
+            Comment as <Link to={`/user/${currentUser.username}`}>{currentUser.username}</Link>
+            <form>
+                <input placeholder='What are your thoughts?' id="content" style={{width: 627, height: 200}}/>
+                <button type="submit">Post</button>
+            </form>
+            {currentPost.posts.map(post => <ReplyCard key={post.id} post={post}/>)}
+        </div> : null}
     </div>
   )
 }

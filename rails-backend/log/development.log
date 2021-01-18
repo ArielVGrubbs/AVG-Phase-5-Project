@@ -29064,3 +29064,376 @@ No serializer found for resource: #<Post id: 1, user_id: 1, title: "New day on a
 Completed 200 OK in 219ms (Views: 210.7ms | ActiveRecord: 8.0ms | Allocations: 41876)
 
 
+Started GET "/users" for ::1 at 2021-01-18 14:53:35 -0600
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+No serializer found for resource: #<User id: 1, username: "ArielVGrubbs", email: "arielvictor1234@gmail.com", password_digest: [FILTERED], created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with User::ActiveRecord_Relation (0.44ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 1766)
+
+
+Started GET "/channels" for ::1 at 2021-01-18 14:53:35 -0600
+Processing by ChannelsController#index as */*
+  Parameters: {"channel"=>{}}
+  [1m[36mChannel Load (0.3ms)[0m  [1m[34mSELECT "channels".* FROM "channels"[0m
+  ↳ app/controllers/channels_controller.rb:4:in `index'
+No serializer found for resource: #<Channel id: 1, title: "r/memes", created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Channel::ActiveRecord_Relation (0.11ms)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.3ms | Allocations: 1109)
+
+
+Started GET "/posts" for ::1 at 2021-01-18 14:53:35 -0600
+Processing by PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:7:in `index'
+No serializer found for resource: #<Post id: 1, user_id: 1, title: "New day on a new social media platform", content: "It's the beginning of time as far as memes are con...", postable_type: "Channel", postable_id: 1, created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mChannel Load (0.3ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 1], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 2]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 2], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 3]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 3], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 4]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 4], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 5]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 5], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 6]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 6], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 11]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 11], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 33]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 33], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Post::ActiveRecord_Relation (94.78ms)
+Completed 200 OK in 100ms (Views: 93.5ms | ActiveRecord: 6.1ms | Allocations: 41987)
+
+
+Started GET "/users" for ::1 at 2021-01-18 14:58:22 -0600
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+No serializer found for resource: #<User id: 1, username: "ArielVGrubbs", email: "arielvictor1234@gmail.com", password_digest: [FILTERED], created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with User::ActiveRecord_Relation (0.8ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.3ms | Allocations: 1746)
+
+
+Started GET "/channels" for ::1 at 2021-01-18 14:58:22 -0600
+Processing by ChannelsController#index as */*
+  Parameters: {"channel"=>{}}
+  [1m[36mChannel Load (0.6ms)[0m  [1m[34mSELECT "channels".* FROM "channels"[0m
+  ↳ app/controllers/channels_controller.rb:4:in `index'
+No serializer found for resource: #<Channel id: 1, title: "r/memes", created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Channel::ActiveRecord_Relation (0.11ms)
+Completed 200 OK in 7ms (Views: 6.4ms | ActiveRecord: 0.6ms | Allocations: 1096)
+
+
+Started GET "/posts" for ::1 at 2021-01-18 14:58:22 -0600
+Processing by PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.8ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:7:in `index'
+No serializer found for resource: #<Post id: 1, user_id: 1, title: "New day on a new social media platform", content: "It's the beginning of time as far as memes are con...", postable_type: "Channel", postable_id: 1, created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mChannel Load (0.3ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.4ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 1], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 2]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (2.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 2], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.4ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 3]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (2.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 3], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 4]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 4], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 5]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 5], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 6]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 6], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 11]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 11], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 33]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 33], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Post::ActiveRecord_Relation (195.37ms)
+Completed 200 OK in 203ms (Views: 190.9ms | ActiveRecord: 11.5ms | Allocations: 41875)
+
+
+Started GET "/users" for ::1 at 2021-01-18 14:58:28 -0600
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+No serializer found for resource: #<User id: 1, username: "ArielVGrubbs", email: "arielvictor1234@gmail.com", password_digest: [FILTERED], created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with User::ActiveRecord_Relation (0.42ms)
+Completed 200 OK in 5ms (Views: 4.3ms | ActiveRecord: 0.4ms | Allocations: 1746)
+
+
+Started GET "/channels" for ::1 at 2021-01-18 14:58:28 -0600
+Processing by ChannelsController#index as */*
+  Parameters: {"channel"=>{}}
+  [1m[36mChannel Load (0.4ms)[0m  [1m[34mSELECT "channels".* FROM "channels"[0m
+  ↳ app/controllers/channels_controller.rb:4:in `index'
+No serializer found for resource: #<Channel id: 1, title: "r/memes", created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Channel::ActiveRecord_Relation (0.13ms)
+Completed 200 OK in 6ms (Views: 5.3ms | ActiveRecord: 0.4ms | Allocations: 1096)
+
+
+Started GET "/posts" for ::1 at 2021-01-18 14:58:28 -0600
+Processing by PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:7:in `index'
+No serializer found for resource: #<Post id: 1, user_id: 1, title: "New day on a new social media platform", content: "It's the beginning of time as far as memes are con...", postable_type: "Channel", postable_id: 1, created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers]   [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mChannel Load (0.3ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 1], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 2]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 2], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 3]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 3], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 4]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 4], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 5]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 5], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 6]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 6], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 11]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 11], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 33]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 33], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Post::ActiveRecord_Relation (92.96ms)
+Completed 200 OK in 99ms (Views: 91.2ms | ActiveRecord: 7.5ms | Allocations: 41875)
+
+
+Started GET "/users" for ::1 at 2021-01-18 15:00:59 -0600
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+No serializer found for resource: #<User id: 1, username: "ArielVGrubbs", email: "arielvictor1234@gmail.com", password_digest: [FILTERED], created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with User::ActiveRecord_Relation (0.69ms)
+Completed 200 OK in 8ms (Views: 7.4ms | ActiveRecord: 0.4ms | Allocations: 1746)
+
+
+Started GET "/channels" for ::1 at 2021-01-18 15:00:59 -0600
+Processing by ChannelsController#index as */*
+  Parameters: {"channel"=>{}}
+  [1m[36mChannel Load (0.3ms)[0m  [1m[34mSELECT "channels".* FROM "channels"[0m
+  ↳ app/controllers/channels_controller.rb:4:in `index'
+No serializer found for resource: #<Channel id: 1, title: "r/memes", created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Channel::ActiveRecord_Relation (0.12ms)
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 1096)
+
+
+Started GET "/posts" for ::1 at 2021-01-18 15:00:59 -0600
+Processing by PostsController#index as */*
+  Parameters: {"post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:7:in `index'
+No serializer found for resource: #<Post id: 1, user_id: 1, title: "New day on a new social media platform", content: "It's the beginning of time as far as memes are con...", postable_type: "Channel", postable_id: 1, created_at: "2021-01-15 16:10:20", updated_at: "2021-01-15 16:10:20">
+[active_model_serializers]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mChannel Load (0.3ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.4ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 1], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.5ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 2]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 2], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 3]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 3], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 4]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 4], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 5]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 5], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.2ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 6]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 6], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.3ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 11]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 11], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mCACHE Channel Load (0.0ms)[0m  [1m[34mSELECT "channels".* FROM "channels" WHERE "channels"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mLike Load (0.4ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."post_id" = ?[0m  [["post_id", 33]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers]   [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."postable_id" = ? AND "posts"."postable_type" = ?[0m  [["postable_id", 33], ["postable_type", "Post"]]
+[active_model_serializers]   ↳ app/controllers/posts_controller.rb:7:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Post::ActiveRecord_Relation (117.14ms)
+Completed 200 OK in 122ms (Views: 113.9ms | ActiveRecord: 7.4ms | Allocations: 41878)
+
+

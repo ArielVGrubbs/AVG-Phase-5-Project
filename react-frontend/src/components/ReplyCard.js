@@ -77,94 +77,24 @@ function ReplyCard(props) {
 
   const currentUser = useSelector(state => state.user.currentUser)
 
-  const [editForm, setEditForm] = useState(false)
-  const [formTitle, setFormTitle] = useState(props.post.title)
-  const [formContent, setFormContent] = useState(props.post.content)
-
-  const handleStartEdit = (e) => {
-    setEditForm(true)
-  }
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault()
-    fetch(`http://localhost:3000/posts/${props.post.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        'Auth-Key': localStorage.getItem('auth_key')
-      },
-      body: JSON.stringify({
-        title: formTitle,
-        content: formContent
-      })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        debugger
-        dispatch({type:'UPDATE_POST', post: data})
-        setEditForm(false)
-    })
-  }
-
-  const handleDelete = () => {
-    fetch(`http://localhost:3000/posts/${props.post.id}`, {
-      method: 'DELETE',
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    dispatch({type:'DELETE_POST', post:props.post})
-    props.deletePost(props.post)
-  }
-
-  const handleFormChange = (e) => {
-    if (e.target.id === 'title'){
-      setFormTitle(e.target.value)
-    } else {
-      setFormContent(e.target.value)
-    }
-  }
-
-  // const handleContentChange = (e) => {
-  //   setFormContent(e.target.value)
-  // }
-
   return (
     <React.Fragment>
         
             <Grid item key={props.post.id}>
                 <Card className={classes.card}>
-                    {(props.userPage) ? <div className={classes.cardActions}>
-                    <Button onClick={(e) => handleStartEdit(e)} size='medium' variant="contained" color="primary" className={classes.buttons}>
-                      Edit
-                    </Button>
-                    <br />
-                    <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
-                      Delete
-                    </Button>
-                    <Box>Likes: { (props.post.likes) ? props.post.likes.length : 0}</Box>
-                    </div> : <div className={classes.cardActions}>
+                    <div className={classes.cardActions}>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
                       <ArrowDropUpIcon />
                     </Button>
                     <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
                       <ArrowDropDownIcon ml={0}/>
-                    </Button></div>}
-                    <CardContent className={classes.cardContent} onClick={() => history.push(`./posts/${props.post.id}`)}>
+                    </Button></div>
+                    <CardContent className={classes.cardContent} >
                         <br />
-                        {(!editForm) ? <div><Typography>
-                            Title: {formTitle}
-                        </Typography>
                         <Typography>
-                            Content: {formContent}
-                        </Typography></div> : 
-                        <form onSubmit={(e) => handleFormSubmit(e)}>
-                          <input placeholder='Title' id="title" style={{width: 600}} value={formTitle} onChange={(e) => handleFormChange(e)}/>
-                          <input placeholder='Text' id="content" style={{width: 600, height: 165}} value={formContent} onChange={(e) => handleFormChange(e)}/>
-                          <button type="submit">Post</button>
-                        </form>}
+                            Content: {props.post.content}
+                        </Typography>
                         <Typography>
                             Posting User: {(props.post.user) ? props.post.user.username : currentUser.username}
                         </Typography>
