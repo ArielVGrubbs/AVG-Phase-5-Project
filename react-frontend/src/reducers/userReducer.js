@@ -5,7 +5,8 @@ const initialState = {
         password: '',
         username: '',
         email: ''
-    }
+    },
+    userFetch: false
 }
 
 const userReducer = (state = initialState, action) => {
@@ -13,7 +14,8 @@ const userReducer = (state = initialState, action) => {
         case 'GET_USERS':{
             return {
                 ...state,
-                allUsers: action.users
+                allUsers: action.users,
+                userFetch: true
             }
         }
         case 'LOGOUT':{

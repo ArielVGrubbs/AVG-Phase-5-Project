@@ -24,12 +24,20 @@ const UserPage = () => {
 
     const users = useSelector(state => state.user.allUsers)
     const [allUsers, setAllUsers] = useState(users)
-    const user = allUsers.find(u => u.username === URL.username)
 
     const posts = useSelector(state => state.posts.allPosts)
     const [allPosts, setAllPosts] = useState(posts)
 
-    let userPosts = allPosts.filter(post => post.user.username === user.username)
+    let userPosts
+
+    const userFetch = useSelector(state => state.user.userFetch)
+
+    if (userFetch){
+        // debugger
+        const user = allUsers.find(u => u.username === URL.username)
+        userPosts = allPosts.filter(post => post.user.username === user.username)
+    }
+
 
     useEffect(() => {
         setAllPosts(posts)
@@ -40,10 +48,13 @@ const UserPage = () => {
     }
 
     return (
-        <div>
-            <Header />
-            <p>Hello {localStorage.getItem('currentUserUsername')}</p>
-            {userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>)}
+        <div>{(userFetch) ? 
+            <div>
+            
+                <Header />
+                <p>Hello {localStorage.getItem('currentUserUsername')}</p>
+                {userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>)}
+            </div> : null }
         </div>
     )
 }

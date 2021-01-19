@@ -145,6 +145,7 @@ function ReplyCard(props) {
   return (
     <React.Fragment>
         
+            {(post) ? 
             <Grid item key={post.id}>
                 <Card className={classes.card}>
                     <div className={classes.cardActions}>
@@ -175,6 +176,7 @@ function ReplyCard(props) {
                     </CardContent>
                 </Card>
             </Grid>
+            : null }
     </React.Fragment>
   )
 }

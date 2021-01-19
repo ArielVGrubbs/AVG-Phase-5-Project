@@ -47,8 +47,8 @@ function App() {
           .then(res => res.json())
           .then(data => {
             dispatch({type: 'GET_POSTS', posts: data})
-            dispatch({type: 'GET_CHANNELS', channels: channels})
             dispatch({type: 'GET_USERS', users: users})
+            dispatch({type: 'GET_CHANNELS', channels: channels})
             dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
             console.log("All fetches done")
           })

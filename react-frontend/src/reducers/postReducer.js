@@ -27,6 +27,14 @@ const postReducer = (state = initialState, action) => {
         }
         case 'DELETE_POST': {
             let newAllPosts = state.allPosts.filter(post => post.id !== action.post.id)
+            if (action.post.postable_type === "Post"){
+                let parentPost = newAllPosts.find(post => post.id === action.post.postable_id)
+                parentPost.posts.filter(p => p.id !== action.post.id)
+                newAllPosts.filter(post => post.id !== parentPost.id)
+                newAllPosts = [...newAllPosts, parentPost]
+            }
+            
+
             return {
                 ...state,
                 allPosts: [...newAllPosts]
