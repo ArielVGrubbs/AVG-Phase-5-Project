@@ -32,6 +32,16 @@ const postReducer = (state = initialState, action) => {
                 allPosts: [...newAllPosts]
             }
         }
+        case 'ADD_REPLY': {
+            let parentPost = state.allPosts.find(post => post.id === action.reply.postable_id)
+            let newAllPosts = state.allPosts.filter(post => post.id !== action.reply.postable_id)
+
+            parentPost.posts = [...parentPost.posts, action.reply]
+            return {
+                ...state,
+                allPosts: [...newAllPosts, parentPost, action.reply]
+            }
+        }
         default:
             return state;
   

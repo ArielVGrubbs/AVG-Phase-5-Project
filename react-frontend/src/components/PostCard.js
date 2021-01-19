@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   card: {
-    minWidth: 200,
+    // minWidth: 200,
     width: 719.7,
     // height:450,
     padding: 5,

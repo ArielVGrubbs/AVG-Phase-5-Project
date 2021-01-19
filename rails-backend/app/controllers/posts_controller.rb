@@ -4,13 +4,13 @@ class PostsController < ApplicationController
 
     def index
         posts = Post.all
-        render json: posts, except: [:created_at, :updated_at], include: [:user, :postable, :likes, :posts]
+        render json: posts, include: [:user, :postable, :likes, :posts]
     end
 
     def show
         post = Post.find_by(id: params[:id])
         if post
-            render json: post.slice(:id, :content, :user_id, :postable, :title)
+            render json: post, include: [:user, :postable, :likes, :posts]
         else
             render json: { message: 'Item not found' }
         end
