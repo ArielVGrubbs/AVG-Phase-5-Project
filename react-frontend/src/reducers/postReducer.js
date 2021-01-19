@@ -33,8 +33,6 @@ const postReducer = (state = initialState, action) => {
                 newAllPosts.filter(post => post.id !== parentPost.id)
                 newAllPosts = [...newAllPosts, parentPost]
             }
-            
-
             return {
                 ...state,
                 allPosts: [...newAllPosts]
@@ -48,6 +46,15 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allPosts: [...newAllPosts, parentPost, action.reply]
+            }
+        }
+        case 'LIKE': {
+            let newAllPosts = state.allPosts.filter(post => post.id !== action.like.post_id)
+            let likedPost = state.allPosts.find(post => post.id === action.like.post_id)
+            likedPost.likes.push(action.like)
+            return {
+                ...state,
+                allPosts: [...newAllPosts, likedPost]
             }
         }
         default:

@@ -142,6 +142,25 @@ function ReplyCard(props) {
       props.setReplyPost(post)
   }
 
+  const handleUpVote = (e) => {
+    console.log(e.target)
+    fetch('http://localhost:3000/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: currentUser.id,
+        post_id: props.post.id
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch({type:'LIKE', like:data})
+    })
+  }
+
   return (
     <React.Fragment>
         
@@ -150,7 +169,7 @@ function ReplyCard(props) {
                 <Card className={classes.card}>
                     <div className={classes.cardActions}>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
-                      <ArrowDropUpIcon />
+                      <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
                     </Button>
                     <Box>{ (post.likes) ? post.likes.length : 0}</Box>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>

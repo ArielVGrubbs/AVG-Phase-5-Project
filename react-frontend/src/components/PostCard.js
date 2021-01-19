@@ -134,6 +134,28 @@ function PostCard(props) {
   // const handleContentChange = (e) => {
   //   setFormContent(e.target.value)
   // }
+  const handleUpVote = (e) => {
+    console.log(e.target)
+    fetch('http://localhost:3000/likes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: currentUser.id,
+        post_id: props.post.id
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch({type:'LIKE', like:data})
+    })
+  }
+
+  // const handleDownVote = (e) => {
+
+  // }
 
   return (
     <React.Fragment>
@@ -150,8 +172,8 @@ function PostCard(props) {
                     </Button>
                     <Box>Likes: { (props.post.likes) ? props.post.likes.length : 0}</Box>
                     </div> : <div className={classes.cardActions}>
-                    <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
-                      <ArrowDropUpIcon />
+                    <Button size='medium' variant="contained" color="primary">
+                      <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
                     </Button>
                     <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
