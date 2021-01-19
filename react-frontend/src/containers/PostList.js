@@ -24,7 +24,9 @@ function PostList() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const posts = useSelector(state => state.posts.allPosts)
+  let posts = useSelector(state => state.posts.allPosts)
+  posts.sort((a, b) => (a.likes.length > b.likes.length) ? -1 : 1)
+  // products.sort((a, b) => (a.price > b.price) ? 1 : -1)
 
   return (
     <React.Fragment>

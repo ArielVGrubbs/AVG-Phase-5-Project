@@ -1,5 +1,5 @@
-ariel = User.create(username:"ArielVGrubbs", password_digest:"1234", email:"arielvictor1234@gmail.com")
-tony = User.create(username:"AnthonyEGrubbs", password_digest:"1234", email:"anthonyedwards1234@gmail.com")
+ariel = User.create(username:"ArielVGrubbs", password:"1234", email:"arielvictor1234@gmail.com")
+tony = User.create(username:"AnthonyEGrubbs", password:"1234", email:"anthonyedwards1234@gmail.com")
 
 r_slash_memes = Channel.create(title:"r/memes")
 

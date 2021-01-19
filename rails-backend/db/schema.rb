@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_174146) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
+    t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

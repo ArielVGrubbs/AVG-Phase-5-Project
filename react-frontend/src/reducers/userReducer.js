@@ -33,14 +33,14 @@ const userReducer = (state = initialState, action) => {
                 currentUser: cU
             }
         }
-        // case 'SIGN_UP':{
-        //     return {
-        //         ...state,
-        //         isLoggedIn: true,
-        //         currentUser: action.user
-        //         // allUsers: [...state.allUsers, action.user]
-        //     }
-        // }
+        case 'SIGN_UP':{
+            let cU = action.user
+            return {
+                ...state,
+                isLoggedIn: true,
+                currentUser: cU
+            }
+        }
         // case 'UPDATE_CURRENT_USER':{
         //     return {
         //         ...state,

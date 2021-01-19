@@ -16,6 +16,8 @@ class LikesController < ApplicationController
     def create
         like = Like.new(like_params)
         like.save
+        # user = User.all.find(like_params[:user_id])
+        # byebug
         render json: like
     end
 

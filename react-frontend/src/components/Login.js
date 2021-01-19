@@ -54,7 +54,9 @@ function LoginForm() {
   let history = useHistory();
 
   const dispatch = useDispatch();
-  let noUser = false
+  // let noUser = false
+
+  const [msg, setMsg] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -69,15 +71,20 @@ function LoginForm() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(newUser)
-    }).then(res => res.json())
+    })
+    .then(res => res.json())
     .then(token => {
-      localStorage.setItem('auth_key',token['auth_key'])
-      localStorage.setItem('currentUserUsername', newUser.username)
-      console.log(token)
-      newUser.email = token['user_id']
-      // newUser.password = null
-      dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
-      history.push('/dashboard')
+      if(token['msg']){
+        setMsg(token['msg'])
+      }else{
+        localStorage.setItem('auth_key',token['auth_key'])
+        localStorage.setItem('currentUserUsername', newUser.username)
+        console.log(token)
+        newUser.email = token['user_id']
+        // newUser.password = null
+        dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
+        history.push('/dashboard')
+      }
     })
     
   }
@@ -89,7 +96,7 @@ function LoginForm() {
       <div className={classes.paper}>
         <Avatar className={classes.avatar}> <ChildCareIcon /> </Avatar>
        <Typography component="h1" variant="h5"> Sign in </Typography>
-       {(noUser) ? <Typography className={classes.noUser}>That username and/or password is incorrect</Typography> : <div></div>}
+       {(msg) ? <Typography className={classes.noUser}>That username and/or password is incorrect</Typography> : <div></div>}
         <form className={classes.form} onSubmit={(e)=>handleSubmit(e)} noValidate>
           <TextField
             variant="outlined"

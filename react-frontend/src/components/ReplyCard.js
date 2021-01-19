@@ -144,40 +144,98 @@ function ReplyCard(props) {
 
   const handleUpVote = (e) => {
     console.log(e.target)
-    fetch('http://localhost:3000/likes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        post_id: props.post.id
+    if(currentUser.dislikes.find(dislike => dislike.post_id === post.id)){
+      let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === post.id).id
+      fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      dispatch({type:'LIKE', like:data})
-    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        fetch('http://localhost:3000/likes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            post_id: post.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          dispatch({type:'LIKE', like:data})
+        })
+      })
+    }else{
+      fetch('http://localhost:3000/likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          post_id: post.id
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch({type:'LIKE', like:data})
+      })
+    }
   }
 
   const handleDownVote = (e) => {
     console.log(e.target)
-    fetch('http://localhost:3000/dislikes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        post_id: props.post.id
+    if(currentUser.likes.find(like => like.post_id === post.id)){
+      let likeId = currentUser.likes.find(like => like.post_id === post.id).id
+      fetch(`http://localhost:3000/likes/${likeId}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      dispatch({type:'DISLIKE', dislike:data})
-    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        fetch('http://localhost:3000/dislikes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            post_id: post.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          dispatch({type:'DISLIKE', dislike:data})
+        })
+      })
+    }else{
+      fetch('http://localhost:3000/dislikes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          post_id: post.id
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch({type:'DISLIKE', dislike:data})
+      })
+    }
   }
 
   return (
@@ -186,14 +244,14 @@ function ReplyCard(props) {
             {(post) ? 
             <Grid item key={post.id}>
                 <Card className={classes.card}>
-                    <div className={classes.cardActions}>
+                    <div>{(post.user.id !== currentUser.id) ? <div className={classes.cardActions}>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
                       <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
                     </Button>
                     <Box>{ (post.likes) ? post.likes.length-post.dislikes.length : 0}</Box>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
                       <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
-                    </Button></div>
+                    </Button></div> : null } </div>
                     <CardContent className={classes.cardContent} >
                         <br />
                         <Typography>

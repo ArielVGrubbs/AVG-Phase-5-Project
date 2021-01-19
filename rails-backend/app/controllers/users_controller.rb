@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
-        render json: users, except: [:created_at, :updated_at]#, include: [:reviews, :orders]
+        render json: users, except: [:created_at, :updated_at], include: [:likes, :dislikes]
     end
 
     def show

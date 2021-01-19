@@ -33,8 +33,8 @@ const UserPage = () => {
     const userFetch = useSelector(state => state.user.userFetch)
 
     if (userFetch){
-        // debugger
         const user = allUsers.find(u => u.username === URL.username)
+        console.log(user)
         userPosts = allPosts.filter(post => post.user.username === user.username)
     }
 

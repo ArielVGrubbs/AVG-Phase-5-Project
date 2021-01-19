@@ -136,40 +136,100 @@ function PostCard(props) {
   // }
   const handleUpVote = (e) => {
     console.log(e.target)
-    fetch('http://localhost:3000/likes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        post_id: props.post.id
+    if(currentUser.dislikes.includes(dislike => dislike.post_id === props.post.id)){
+      let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
+      fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      dispatch({type:'LIKE', like:data})
-    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        fetch('http://localhost:3000/likes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            post_id: props.post.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          dispatch({type:'LIKE', like:data})
+        })
+      })
+    } else {
+      fetch('http://localhost:3000/likes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          post_id: props.post.id
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch({type:'LIKE', like:data})
+      })
+    }
   }
 
   const handleDownVote = (e) => {
     console.log(e.target)
-    fetch('http://localhost:3000/dislikes', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        user_id: currentUser.id,
-        post_id: props.post.id
+    if(currentUser.likes.find(like => like.post_id === props.post.id)){
+      let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
+      fetch(`http://localhost:3000/likes/${likeId}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json"
+        }
       })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      dispatch({type:'DISLIKE', dislike:data})
-    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch({type: 'UNLIKE', like: data})
+        fetch('http://localhost:3000/dislikes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            post_id: props.post.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          dispatch({type:'DISLIKE', dislike:data})
+        })
+      })
+    } else {
+      fetch('http://localhost:3000/dislikes', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          post_id: props.post.id
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        dispatch({type:'DISLIKE', dislike:data})
+      })
+    }
+    
   }
 
   return (
@@ -177,7 +237,7 @@ function PostCard(props) {
         
             <Grid item key={props.post.id}>
                 <Card className={classes.card}>
-                    {(props.userPage) ? <div className={classes.cardActions}>
+                    {(props.post.user.id !== currentUser.id) ? <div>{(props.userPage) ? <div className={classes.cardActions}>
                     <Button onClick={(e) => handleStartEdit(e)} size='medium' variant="contained" color="primary" className={classes.buttons}>
                       Edit
                     </Button>
@@ -193,7 +253,7 @@ function PostCard(props) {
                     <Box>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
                     <Button size='medium' variant="contained" color="primary" ml={0}>
                       <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
-                    </Button></div>}
+                    </Button></div>}</div> : <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box> }
                     <CardContent className={classes.cardContent} >
                         <Typography>
                             Channel: {(props.post.postable) ? props.post.postable.title : null}
