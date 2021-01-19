@@ -153,9 +153,24 @@ function PostCard(props) {
     })
   }
 
-  // const handleDownVote = (e) => {
-
-  // }
+  const handleDownVote = (e) => {
+    console.log(e.target)
+    fetch('http://localhost:3000/dislikes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: currentUser.id,
+        post_id: props.post.id
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch({type:'DISLIKE', dislike:data})
+    })
+  }
 
   return (
     <React.Fragment>
@@ -170,14 +185,14 @@ function PostCard(props) {
                     <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
                       Delete
                     </Button>
-                    <Box>Likes: { (props.post.likes) ? props.post.likes.length : 0}</Box>
+                    <Box>Likes: { (props.post.likes) ? props.post.likes.length - props.post.dislikes.length : 0}</Box>
                     </div> : <div className={classes.cardActions}>
                     <Button size='medium' variant="contained" color="primary">
                       <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
                     </Button>
                     <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
-                    <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
-                      <ArrowDropDownIcon ml={0}/>
+                    <Button size='medium' variant="contained" color="primary" ml={0}>
+                      <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
                     </Button></div>}
                     <CardContent className={classes.cardContent} >
                         <Typography>

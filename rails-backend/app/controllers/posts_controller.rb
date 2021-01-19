@@ -4,13 +4,13 @@ class PostsController < ApplicationController
 
     def index
         posts = Post.all
-        render json: posts, include: [:user, :postable, :likes, :posts]
+        render json: posts, include: [:user, :postable, :likes, :dislikes, :posts]
     end
 
     def show
         post = Post.find_by(id: params[:id])
         if post
-            render json: post, include: [:user, :postable, :likes, :posts]
+            render json: post, include: [:user, :postable, :likes, :dislikes, :posts]
         else
             render json: { message: 'Item not found' }
         end
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
         post.user_id = current_user.id
         # byebug
         if post.save
-            render json: post, include: [:user, :postable, :likes, :posts]
+            render json: post, include: [:user, :postable, :likes, :dislikes, :posts]
         else
             render:json => { :msg => "Post creation failed.." }, :status => :bad_request
         end
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
         if post.user_id == current_user.id
             post.update_attributes(post_params)
             post.save
-            render json: post, include: [:user, :postable, :likes, :posts]
+            render json: post, include: [:user, :postable, :likes, :dislikes, :posts]
         else
             render json: { message: 'The credentials you have presented are not authorized to edit this post, please be sure to be logged in appropriately.' }
         end

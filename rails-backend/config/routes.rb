@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :dislikes
   resources :channel_members
   resources :channel_owners
   resources :channels

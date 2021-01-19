@@ -57,6 +57,16 @@ const postReducer = (state = initialState, action) => {
                 allPosts: [...newAllPosts, likedPost]
             }
         }
+        case 'DISLIKE': {
+            let newAllPosts = state.allPosts.filter(post => post.id !== action.dislike.post.id)
+            let dislikedPost = state.allPosts.find(post => post.id === action.dislike.post.id)
+            debugger
+            dislikedPost.dislikes.push(action.dislike)
+            return {
+                ...state,
+                allPosts: [...newAllPosts, dislikedPost]
+            }
+        }
         default:
             return state;
   

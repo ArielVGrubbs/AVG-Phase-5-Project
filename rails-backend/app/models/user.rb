@@ -2,6 +2,7 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :likes
+    has_many :dislikes
     has_many :posts
     has_many :channel_owners
     has_many :owned_channels, :through => :channel_owners, :source => :channel

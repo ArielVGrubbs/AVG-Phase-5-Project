@@ -161,6 +161,25 @@ function ReplyCard(props) {
     })
   }
 
+  const handleDownVote = (e) => {
+    console.log(e.target)
+    fetch('http://localhost:3000/dislikes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: currentUser.id,
+        post_id: props.post.id
+      })
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      dispatch({type:'DISLIKE', dislike:data})
+    })
+  }
+
   return (
     <React.Fragment>
         
@@ -173,7 +192,7 @@ function ReplyCard(props) {
                     </Button>
                     <Box>{ (post.likes) ? post.likes.length : 0}</Box>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
-                      <ArrowDropDownIcon ml={0}/>
+                      <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
                     </Button></div>
                     <CardContent className={classes.cardContent} >
                         <br />
