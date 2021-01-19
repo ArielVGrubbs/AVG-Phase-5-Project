@@ -190,7 +190,7 @@ function ReplyCard(props) {
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
                       <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
                     </Button>
-                    <Box>{ (post.likes) ? post.likes.length : 0}</Box>
+                    <Box>{ (post.likes) ? post.likes.length-post.dislikes.length : 0}</Box>
                     <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
                       <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
                     </Button></div>

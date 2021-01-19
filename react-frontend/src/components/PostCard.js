@@ -185,12 +185,12 @@ function PostCard(props) {
                     <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
                       Delete
                     </Button>
-                    <Box>Likes: { (props.post.likes) ? props.post.likes.length - props.post.dislikes.length : 0}</Box>
+                    <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
                     </div> : <div className={classes.cardActions}>
                     <Button size='medium' variant="contained" color="primary">
                       <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
                     </Button>
-                    <Box>{ (props.post.likes) ? props.post.likes.length : 0}</Box>
+                    <Box>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
                     <Button size='medium' variant="contained" color="primary" ml={0}>
                       <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
                     </Button></div>}
