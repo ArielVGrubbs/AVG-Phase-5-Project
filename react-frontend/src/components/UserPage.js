@@ -22,11 +22,17 @@ const UserPage = () => {
     const dispatch = useDispatch();
     const URL = useParams()
 
+    const currentUser = useSelector(state => state.user.currentUser)
+
     const users = useSelector(state => state.user.allUsers)
     const [allUsers, setAllUsers] = useState(users)
 
     const posts = useSelector(state => state.posts.allPosts)
     const [allPosts, setAllPosts] = useState(posts)
+
+    const [showLiked, setShowLiked] = useState(false)
+
+    const likedPosts = allPosts.filter(post => (post.likes.find(like => like.user_id === currentUser.id)) ? true : false)
 
     let userPosts
 
@@ -47,13 +53,18 @@ const UserPage = () => {
         setAllPosts(allPosts.filter(p => p.id !== post.id))
     }
 
+    const showLikedPosts = () => {
+        setShowLiked(!showLiked)
+    }
+
     return (
         <div>{(userFetch) ? 
             <div>
             
                 <Header />
                 <p>Hello {localStorage.getItem('currentUserUsername')}</p>
-                {userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>)}
+                <p onClick={() => showLikedPosts()}>Show Liked Posts?</p>
+                {(!showLiked) ? userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>) : likedPosts.map(p => <PostCard key={p.id} post={p} />)}
             </div> : null }
         </div>
     )

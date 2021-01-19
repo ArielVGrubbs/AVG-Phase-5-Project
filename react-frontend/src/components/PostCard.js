@@ -237,23 +237,29 @@ function PostCard(props) {
         
             <Grid item key={props.post.id}>
                 <Card className={classes.card}>
-                    {(props.post.user.id !== currentUser.id) ? <div>{(props.userPage) ? <div className={classes.cardActions}>
-                    <Button onClick={(e) => handleStartEdit(e)} size='medium' variant="contained" color="primary" className={classes.buttons}>
-                      Edit
-                    </Button>
-                    <br />
-                    <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
-                      Delete
-                    </Button>
-                    <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
-                    </div> : <div className={classes.cardActions}>
-                    <Button size='medium' variant="contained" color="primary">
-                      <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
-                    </Button>
-                    <Box>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
-                    <Button size='medium' variant="contained" color="primary" ml={0}>
-                      <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
-                    </Button></div>}</div> : <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box> }
+                    {(props.userPage) ? 
+                      <div className={classes.cardActions}>
+                      <Button onClick={(e) => handleStartEdit(e)} size='medium' variant="contained" color="primary" className={classes.buttons}>
+                        Edit
+                      </Button>
+                      <br />
+                      <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
+                        Delete
+                      </Button>
+                      <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
+                      </div> : 
+                    <div className={classes.cardActions}> 
+                      {(props.post.user.id !== currentUser.id) ? <div>
+                        <Button size='medium' variant="contained" color="primary">
+                          <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
+                        </Button>
+                        <Box>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
+                        <Button size='medium' variant="contained" color="primary" ml={0}>
+                          <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
+                        </Button>
+                      </div> : 
+                      <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box> }
+                    </div>}
                     <CardContent className={classes.cardContent} >
                         <Typography>
                             Channel: {(props.post.postable) ? props.post.postable.title : null}
@@ -271,7 +277,7 @@ function PostCard(props) {
                           <button type="submit">Post</button>
                         </form>}
                         <Typography>
-                            Posting User: {(props.post.user) ? props.post.user.username : currentUser.username}
+                            <Link to={`/user/${props.post.user.username}`}>Posting User: {(props.post.user) ? props.post.user.username : currentUser.username}</Link>
                         </Typography>
                         <Typography>
                             # of replies: {(props.post.posts) ? props.post.posts.length : 0}
