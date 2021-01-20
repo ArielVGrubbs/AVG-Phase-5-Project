@@ -32,10 +32,10 @@ const ChannelPage = () => {
     const userFetch = useSelector(state => state.user.userFetch)
 
     let currentChannelPosts = false
-    // let currentChannel
+    let currentChannel
 
     if(userFetch){
-        const currentChannel = allChannels.find(channel => channel.title === URL.channel_title)
+        currentChannel = allChannels.find(channel => channel.title === URL.channel_title)
         const channelPosts = allPosts.filter(post => post.postable_type === "Channel")
         // debugger
         currentChannelPosts = channelPosts.filter(post => post.postable_id === currentChannel.id)
@@ -46,7 +46,7 @@ const ChannelPage = () => {
         {(currentChannelPosts) ? 
             <div>
                 <Header />
-                {/* <p>Channel: {currentChannel.title}</p> */}
+                {(currentChannel) ? <p>Channel: /readit/{currentChannel.title}</p> : null}
                 {currentChannelPosts.map(post => <PostCard key={post.id} post={post}/>)}
             </div>
             : null
