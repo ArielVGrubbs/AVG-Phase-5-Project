@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
+    marginRight: theme.spacing(10)
     // justifyContent: 'space-evenly'
   },
   cardActions: {
@@ -145,8 +146,9 @@ function PostCard(props) {
         }
       })
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
+      .then(dislikeData => {
+        console.log(dislikeData)
+        dispatch({type:'UNDISLIKE', dislike:dislikeData})
         fetch('http://localhost:3000/likes', {
           method: 'POST',
           headers: {
@@ -193,9 +195,9 @@ function PostCard(props) {
         }
       })
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        dispatch({type: 'UNLIKE', like: data})
+      .then(likeData => {
+        console.log(likeData)
+        dispatch({type: 'UNLIKE', like: likeData})
         fetch('http://localhost:3000/dislikes', {
           method: 'POST',
           headers: {
@@ -229,7 +231,6 @@ function PostCard(props) {
         dispatch({type:'DISLIKE', dislike:data})
       })
     }
-    
   }
 
   return (

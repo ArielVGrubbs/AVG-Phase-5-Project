@@ -32,7 +32,8 @@ const UserPage = () => {
 
     const [showLiked, setShowLiked] = useState(false)
 
-    const likedPosts = allPosts.filter(post => (post.likes.find(like => like.user_id === currentUser.id)) ? true : false)
+    // const likedPosts = allPosts.filter(post => (post.likes.find(like => like.user_id === currentUser.id)) ? true : false)
+    let likedPosts
 
     let userPosts
 
@@ -40,6 +41,7 @@ const UserPage = () => {
 
     if (userFetch){
         const user = allUsers.find(u => u.username === URL.username)
+        likedPosts = allPosts.filter(post => (post.likes.find(like => like.user_id === user.id)) ? true : false)
         console.log(user)
         userPosts = allPosts.filter(post => post.user.username === user.username)
     }
@@ -64,7 +66,10 @@ const UserPage = () => {
                 <Header />
                 <p>Hello {localStorage.getItem('currentUserUsername')}</p>
                 <p onClick={() => showLikedPosts()}>Show Liked Posts?</p>
-                {(!showLiked) ? userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>) : likedPosts.map(p => <PostCard key={p.id} post={p} />)}
+                <div>
+                    {(currentUser.username === URL.username) ? <div>{(!showLiked) ? userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>) : likedPosts.map(p => <PostCard key={p.id} post={p} />)}</div> : <div>{(!showLiked) ? userPosts.map(p => <PostCard key={p.id} post={p} userPage={false}/>) : likedPosts.map(p => <PostCard key={p.id} post={p} />)}</div>}
+                </div>
+                {/* {(!showLiked) ? userPosts.map(p => <PostCard key={p.id} deletePost={removePost} post={p} userPage={true}/>) : likedPosts.map(p => <PostCard key={p.id} post={p} />)} */}
             </div> : null }
         </div>
     )
