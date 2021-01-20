@@ -22,20 +22,35 @@ const ChannelPage = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
+    const URL = useParams()
+
     const currentUser = useSelector(state => state.user.currentUser)
 
-    const URL = useParams()
-    // const allPosts = useSelector(state => state.posts.allPosts)
-
-    // const currentPost = allPosts.find(post => post.id === parseInt(URL.post_id))
-    // const [replyPost, setReplyPost] = useState(currentPost)
-
     const allChannels = useSelector(state => state.channels.allChannels)
+    const allPosts = useSelector(state => state.posts.allPosts)
+
+    const userFetch = useSelector(state => state.user.userFetch)
+
+    let currentChannelPosts = false
+    // let currentChannel
+
+    if(userFetch){
+        const currentChannel = allChannels.find(channel => channel.title === URL.channel_title)
+        const channelPosts = allPosts.filter(post => post.postable_type === "Channel")
+        // debugger
+        currentChannelPosts = channelPosts.filter(post => post.postable_id === currentChannel.id)
+    }
 
   return (
     <div>
-        <Header />
-        
+        {(currentChannelPosts) ? 
+            <div>
+                <Header />
+                {/* <p>Channel: {currentChannel.title}</p> */}
+                {currentChannelPosts.map(post => <PostCard key={post.id} post={post}/>)}
+            </div>
+            : null
+        }
     </div>
   )
 }

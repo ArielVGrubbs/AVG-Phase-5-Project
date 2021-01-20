@@ -107,7 +107,7 @@ function PostCard(props) {
     .then(res => res.json())
     .then(data => {
         console.log(data)
-        debugger
+        // debugger
         dispatch({type:'UPDATE_POST', post: data})
         setEditForm(false)
     })

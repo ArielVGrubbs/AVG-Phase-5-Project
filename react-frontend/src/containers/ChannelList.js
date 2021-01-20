@@ -36,7 +36,7 @@ function ChannelList() {
         <Header />
         <Grid container className={classes.pList} spacing={2}>
             {
-            channels.map(channel => <Link to={`channels/${channel.title}`}>{channel.title}</Link>)
+            channels.map(channel => <div><Link to={`channels/${channel.title}`}>{channel.title}</Link><br /></div>)
             }
         </Grid>
     </React.Fragment>

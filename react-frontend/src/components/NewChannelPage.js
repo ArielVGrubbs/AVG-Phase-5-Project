@@ -66,7 +66,8 @@ function NewChannelPage() {
         .then(data => {
             console.log(data)
             dispatch({type:'ADD_CHANNEL', channel: data})
-            debugger
+            // debugger
+            history.push('./channels')
         })
         // debugger
         // fetch('http://localhost:3000/posts', {
@@ -109,7 +110,7 @@ function NewChannelPage() {
                     <option>Public</option>
                     <option>Private</option>
                 </select> */}
-                <button type="submit">Post</button>
+                <button type="submit">Submit</button>
                 {/* <Checkbox
                     defaultChecked
                     color="primary"

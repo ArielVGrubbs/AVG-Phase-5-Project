@@ -16,16 +16,12 @@ class ChannelsController < ApplicationController
     def create
         authenticate!
         channel = Channel.new(channel_params)
-        byebug
 
         if channel.save
             channel_owner = ChannelOwner.new(user_id: current_user.id, channel_id: channel.id)
             channel_member = ChannelMember.new(user_id: current_user.id, channel_id: channel.id)
-            byebug
             if channel_owner.save
-                byebug
                 if channel_member.save
-                    byebug
                     render json: channel, include: [:channel_owners, :channel_members]
                 else
                     render:json => { :msg => "Channel Member creation failed.." }, :status => :bad_request

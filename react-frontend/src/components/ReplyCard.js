@@ -149,7 +149,8 @@ function ReplyCard(props) {
       fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
         method: 'DELETE',
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Auth-Key': localStorage.getItem('auth_key')
         }
       })
       .then(res => res.json())
@@ -159,7 +160,8 @@ function ReplyCard(props) {
         fetch('http://localhost:3000/likes', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Auth-Key': localStorage.getItem('auth_key')
           },
           body: JSON.stringify({
             user_id: currentUser.id,
@@ -176,7 +178,8 @@ function ReplyCard(props) {
       fetch('http://localhost:3000/likes', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Auth-Key': localStorage.getItem('auth_key')
         },
         body: JSON.stringify({
           user_id: currentUser.id,
@@ -198,7 +201,8 @@ function ReplyCard(props) {
       fetch(`http://localhost:3000/likes/${likeId}`, {
         method: 'DELETE',
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Auth-Key': localStorage.getItem('auth_key')
         }
       })
       .then(res => res.json())
@@ -208,7 +212,8 @@ function ReplyCard(props) {
         fetch('http://localhost:3000/dislikes', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Auth-Key': localStorage.getItem('auth_key')
           },
           body: JSON.stringify({
             user_id: currentUser.id,
@@ -225,7 +230,8 @@ function ReplyCard(props) {
       fetch('http://localhost:3000/dislikes', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Auth-Key': localStorage.getItem('auth_key')
         },
         body: JSON.stringify({
           user_id: currentUser.id,

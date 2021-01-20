@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
   userStateButtons: {
     marginLeft: theme.spacing(10),
     display: 'flex'
+  },
+  ribbonItems: {
+    marginLeft: theme.spacing(2)
   }
 }));
 
@@ -30,14 +33,14 @@ const Header = (props) => {
         return (
           <div className={classes.userStateButtons}>
             <Link to="/logout"> Logout </Link>
-            <Link to={`/user/${localStorage.getItem('currentUserUsername')}`}> Profile </Link>
+            <Link to={`/user/${localStorage.getItem('currentUserUsername')}`} className={classes.ribbonItems}> Profile </Link>
           </div>
         )
     }else{
         return(
         <div className={classes.userStateButtons}>
             <Link to="/login"> Login </Link>
-            <Link to="/sign_up"> Sign Up </Link>
+            <Link to="/sign_up" className={classes.ribbonItems}> Sign Up </Link>
         </div>
         )
     }
@@ -52,9 +55,9 @@ const Header = (props) => {
           <option><Link to="/new_post"> Create Post </Link></option>
           <option><Link to="/new_channel"> Create Channel </Link></option>
         </select> */}
-        <Link to="/new_post"> Create Post </Link>
-        <Link to="/new_channel"> Create Channel </Link>
-        <Link to="/channels"> Channels </Link>
+        <Link to="/new_post" className={classes.ribbonItems}> Create Post </Link>
+        <Link to="/new_channel" className={classes.ribbonItems}> Create Channel </Link>
+        <Link to="/channels" className={classes.ribbonItems}> Channels </Link>
         {
           handleLoginRender(localStorage.getItem('auth_key') !== 'undefined')
         }
