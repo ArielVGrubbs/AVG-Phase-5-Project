@@ -14,9 +14,17 @@ class DislikesController < ApplicationController
     end
 
     def create
+        # dislike = Dislike.new(dislike_params)
+        # dislike.save
+        # render json: dislike, except: [:created_at, :updated_at], include: [:user, :post]
+        authenticate!
         dislike = Dislike.new(dislike_params)
-        dislike.save
-        render json: dislike, except: [:created_at, :updated_at], include: [:user, :post]
+        dislike.user_id = current_user.id
+        if dislike.save
+            render json: dislike, include: [:user, :post]
+        else
+            render:json => { :msg => "Dislike creation failed.." }, :status => :bad_request
+        end
     end
 
     # def update
@@ -26,7 +34,12 @@ class DislikesController < ApplicationController
     # end
 
     def destroy
-        Dislike.destroy(params[:id])
+        authenticate!
+        if Dislike.find(params[:id]).user_id == current_user.id
+            Dislike.destroy(params[:id])
+        else
+            render:json => { :msg => "Dislike deletion failed.." }, :status => :bad_request
+        end
     end
 
     private

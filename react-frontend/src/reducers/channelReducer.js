@@ -1,5 +1,6 @@
 const initialState = {
-    allChannels: []
+    allChannels: [],
+    newChannel: {}
 }
 
 const channelReducer = (state = initialState, action) => {
@@ -8,6 +9,13 @@ const channelReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allChannels: action.channels
+            }
+        }
+        case 'ADD_CHANNEL': {
+            return {
+                ...state,
+                allChannels: [...state.allChannels, action.channel],
+                newChannel: action.channel
             }
         }
         default:

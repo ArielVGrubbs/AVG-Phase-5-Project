@@ -20,7 +20,6 @@ class PostsController < ApplicationController
         authenticate!
         post = Post.new(post_params)
         post.user_id = current_user.id
-        # byebug
         if post.save
             render json: post, include: [:user, :postable, :likes, :dislikes, :posts]
         else

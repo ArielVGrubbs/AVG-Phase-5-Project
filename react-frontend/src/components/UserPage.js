@@ -42,7 +42,7 @@ const UserPage = () => {
     if (userFetch){
         const user = allUsers.find(u => u.username === URL.username)
         likedPosts = allPosts.filter(post => (post.likes.find(like => like.user_id === user.id)) ? true : false)
-        console.log(user)
+        // console.log(user)
         userPosts = allPosts.filter(post => post.user.username === user.username)
     }
 

@@ -4,4 +4,6 @@ class Channel < ApplicationRecord
     has_many :owners, :through => :channel_owners, :source => :user
     has_many :channel_members
     has_many :members, :through => :channel_owners, :source => :user
+
+    validates :title, uniqueness: { case_sensitive: false }
 end

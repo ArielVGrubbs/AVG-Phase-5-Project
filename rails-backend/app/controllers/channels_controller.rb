@@ -1,22 +1,43 @@
 class ChannelsController < ApplicationController
     def index
         channels = Channel.all
-        render json: channels, except: [:created_at, :updated_at]#, include: [:reviews, :orders]
+        render json: channels, except: [:created_at, :updated_at], include: [:channel_owners, :channel_members]
     end
 
     def show
         channel = Channel.find_by(id: params[:id])
         if channel
-            render json: channel.slice(:id, :title)
+            render json: channel, include: [:channel_owners, :channel_members]
         else
             render json: { message: 'Item not found' }
         end
     end
 
     def create
+        authenticate!
         channel = Channel.new(channel_params)
-        channel.save
-        render json: channel
+        byebug
+
+        if channel.save
+            channel_owner = ChannelOwner.new(user_id: current_user.id, channel_id: channel.id)
+            channel_member = ChannelMember.new(user_id: current_user.id, channel_id: channel.id)
+            byebug
+            if channel_owner.save
+                byebug
+                if channel_member.save
+                    byebug
+                    render json: channel, include: [:channel_owners, :channel_members]
+                else
+                    render:json => { :msg => "Channel Member creation failed.." }, :status => :bad_request
+                    render json: channel, include: [:channel_owners, :channel_members]
+                end
+            else
+                render:json => { :msg => "Channel Owner creation failed.." }, :status => :bad_request
+                render json: channel, include: [:channel_owners, :channel_members]
+            end
+        else
+            render:json => { :msg => "Channel creation failed.." }, :status => :bad_request
+        end
     end
 
     def update

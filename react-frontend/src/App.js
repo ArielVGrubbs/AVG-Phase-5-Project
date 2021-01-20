@@ -9,6 +9,9 @@ import Dashboard from './containers/Dashboard';
 import NewPostPage from './components/NewPostPage'
 import UserPage from './components/UserPage'
 import PostPage from './components/PostPage';
+import NewChannelPage from './components/NewChannelPage'
+import ChannelList from './containers/ChannelList'
+import ChannelPage from './components/ChannelPage'
 // import Header from './components/Header'
 
 
@@ -87,7 +90,7 @@ function App() {
         {/* <Header /> */}
         <Switch>
 
-          <Route path="/dashboard" component={() => {
+          <Route exact path="/dashboard" component={() => {
             if (localStorage.getItem('auth_key') !== 'undefined'){
               return <Dashboard />
             } else {
@@ -106,6 +109,18 @@ function App() {
 
           <Route path="/new_post" component={() => {
             return <NewPostPage />
+          }}/>
+
+          <Route path="/new_channel" component={() => {
+            return <NewChannelPage />
+          }}/>
+
+          <Route exact path="/channels" component={() => {
+            return <ChannelList />
+          }}/>
+
+          <Route path="/channels/:channel_title" component={() => {
+            return <ChannelPage />
           }}/>
 
           <Route path="/user/:username" component={() => {

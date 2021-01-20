@@ -14,11 +14,14 @@ class LikesController < ApplicationController
     end
 
     def create
+        authenticate!
         like = Like.new(like_params)
-        like.save
-        # user = User.all.find(like_params[:user_id])
-        # byebug
-        render json: like
+        like.user_id = current_user.id
+        if like.save
+            render json: like, include: [:user, :post]
+        else
+            render:json => { :msg => "Like creation failed.." }, :status => :bad_request
+        end
     end
 
     # def update
@@ -28,7 +31,12 @@ class LikesController < ApplicationController
     # end
 
     def destroy
-        Like.destroy(params[:id])
+        authenticate!
+        if Like.find(params[:id]).user_id == current_user.id
+            Like.destroy(params[:id])
+        else
+            render:json => { :msg => "Like deletion failed.." }, :status => :bad_request
+        end
     end
 
     private
