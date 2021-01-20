@@ -64,7 +64,7 @@ const PostPage = () => {
                 <input placeholder='What are your thoughts?' id="content" style={{width: 627, height: 200}}/>
                 <button type="submit">Post</button>
             </form>
-            {(currentPost.posts) ? currentPost.posts.map(post => <ReplyCard key={post.id} post={post} handleSubmit={handleSubmit} setReplyPost={setReplyPost} parentWidth={719.7}/>) : null}
+            {(currentPost.posts) ? currentPost.posts.map(post => <ReplyCard key={post.id} post={post} handleSubmit={handleSubmit} setReplyPost={setReplyPost} parentWidth={789.7}/>) : null}
         </div> : null}
     </div>
   )

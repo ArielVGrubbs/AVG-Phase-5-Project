@@ -139,6 +139,8 @@ function PostCard(props) {
     console.log(e.target)
     if(currentUser.dislikes.includes(dislike => dislike.post_id === props.post.id)){
       let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
+      //custom route on backend
+      //errror: chekc return data
       fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
         method: 'DELETE',
         headers: {
