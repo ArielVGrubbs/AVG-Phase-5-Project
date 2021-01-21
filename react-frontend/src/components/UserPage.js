@@ -91,7 +91,7 @@ const UserPage = () => {
         .then(res => res.json())
         .then(data => {
             console.log(data)
-            // dispatch({type: 'ADD_MODERATOR'})
+            dispatch({type: 'ADD_MODERATOR', channelOwner: data})
         })
     }
 

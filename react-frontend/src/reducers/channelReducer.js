@@ -18,6 +18,15 @@ const channelReducer = (state = initialState, action) => {
                 newChannel: action.channel
             }
         }
+        case 'ADD_MODERATOR': {
+            let newAllChannels = state.allChannels.filter(ch => ch.id !== action.channelOwner.channel_id)
+            let moddedChannel = state.allChannels.find(ch => ch.id === action.channelOwner.channel_id)
+            moddedChannel.channel_owners.push(action.channelOwner)
+            return {
+                ...state,
+                allChannels: [...newAllChannels, moddedChannel]
+            }
+        }
         default:
             return state;
   
