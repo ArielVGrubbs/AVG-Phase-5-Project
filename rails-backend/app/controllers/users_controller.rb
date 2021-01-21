@@ -38,6 +38,7 @@ class UsersController < ApplicationController
         # @user = User.find_by(id: params[:id])
         # @user.destroy
         User.destroy(params[:id])
+        render json: { message: 'Item deleted' }
     end
 
     private

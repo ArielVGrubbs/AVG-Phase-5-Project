@@ -6,7 +6,8 @@ const initialState = {
         username: '',
         email: ''
     },
-    userFetch: false
+    userFetch: false,
+    joined: false
 }
 
 const userReducer = (state = initialState, action) => {
@@ -48,6 +49,12 @@ const userReducer = (state = initialState, action) => {
         //         currentUser: action.user
         //     }
         // }
+        case 'SET_JOINED': {
+            return {
+                ...state,
+                joined: action.joined
+            }
+        }
         default:
             return state;
   

@@ -28,6 +28,7 @@ class ChannelMembersController < ApplicationController
 
     def destroy
         ChannelMember.destroy(params[:id])
+        render json: { message: 'Item deleted' }
     end
 
     private

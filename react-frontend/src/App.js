@@ -57,28 +57,6 @@ function App() {
           })
         })
       })
-      // fetch('http://localhost:3000/channels', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     // 'Auth-key': localStorage.getItem('auth_key')
-      //   }
-      // })
-      // .then(res => res.json())
-      // .then(data => {
-      //   dispatch({type: 'GET_CHANNELS', channels: data})
-      // })
-      // fetch('http://localhost:3000/posts', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     // 'Auth-key': localStorage.getItem('auth_key')
-      //   }
-      // })
-      // .then(res => res.json())
-      // .then(data => {
-      //   dispatch({type: 'GET_POSTS', posts: data})
-      // })
     }, [])
 
   const users = useSelector(state => state.user.allUsers)

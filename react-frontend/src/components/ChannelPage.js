@@ -46,30 +46,36 @@ const ChannelPage = () => {
 
     const userFetch = useSelector(state => state.user.userFetch)
 
-    const [joined, setJoined] = useState(false)
+    const stateJoined = useSelector(state => state.user.joined)
+    // const [joined, setJoined] = useState(stateJoined)
+
+    // useEffect(() => {
+    //     setJoined(stateJoined)
+    // }, [stateJoined])
 
     let currentChannelPosts = false
     let currentChannel
 
     if(userFetch){
         currentChannel = allChannels.find(channel => channel.title === URL.channel_title)
-        if(currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id) && joined === false){
-            setJoined(true)
-        } else if(!currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id) && joined === true) {
-            setJoined(false)
+        // debugger
+        if(currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id) && stateJoined === false){
+            dispatch({type: 'SET_JOINED', joined: true})
+        } else if(!currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id) && stateJoined === true){
+            dispatch({type: 'SET_JOINED', joined: false})
         }
         const channelPosts = allPosts.filter(post => post.postable_type === "Channel")
-        // debugger
         currentChannelPosts = channelPosts.filter(post => post.postable_id === currentChannel.id)
     }
     
     const handleJoin = (e) => {
         console.log(e.target)
         // setJoined(!joined)
-        if (joined){
-            setJoined(false)
+        if (stateJoined){
+            // dispatch({type: 'SET_JOINED', joined: false})
+            // setJoined(false)
             let chanMem = currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id)
-            fetch(`http://localhost:3000/channel_members/${chanMem}`, {
+            fetch(`http://localhost:3000/channel_members/${chanMem.id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,10 +85,13 @@ const ChannelPage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                // debugger
+                // dispatch({type: 'SET_JOINED', joined: false})
                 console.log(`You have successfully left ${currentChannel.title}'s membership.`)
             })
         } else {
-            setJoined(true)
+            // dispatch({type: 'SET_JOINED', joined: true})
+            // setJoined(true)
             fetch(`http://localhost:3000/channel_members`, {
                 method: 'POST',
                 headers: {
@@ -97,6 +106,8 @@ const ChannelPage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                // debugger
+                // dispatch({type: 'SET_JOINED', joined: true})
                 console.log(`You have successfully become a member of ${currentChannel.title}.`)
             })
         }
@@ -111,7 +122,7 @@ const ChannelPage = () => {
                     {(currentChannel) ? <div>
                         <div className={classes.topRibbon}>
                             Channel: /readit/{currentChannel.title}
-                            {(joined) ? <Button variant="outlined" className={classes.joinedButton} onClick={(e) => handleJoin(e)} href="#outlined-buttons">Joined</Button> : <Button variant="contained" className={classes.joinButton} disableElevation onClick={(e) => handleJoin(e)}>Join</Button> }
+                            {(stateJoined) ? <Button variant="outlined" className={classes.joinedButton} onClick={(e) => handleJoin(e)} >Joined</Button> : <Button variant="contained" className={classes.joinButton} disableElevation onClick={(e) => handleJoin(e)}>Join</Button> }
                         </div>
                     </div> : null}
                     

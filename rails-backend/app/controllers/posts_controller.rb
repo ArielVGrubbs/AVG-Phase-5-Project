@@ -41,6 +41,7 @@ class PostsController < ApplicationController
 
     def destroy
         Post.destroy(params[:id])
+        render json: { message: 'Item deleted' }
     end
 
     private

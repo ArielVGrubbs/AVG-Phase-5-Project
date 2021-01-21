@@ -17,7 +17,9 @@ class LikesController < ApplicationController
         authenticate!
         like = Like.new(like_params)
         like.user_id = current_user.id
+        # byebug
         if like.save
+            # byebug
             render json: like, include: [:user, :post]
         else
             render:json => { :msg => "Like creation failed.." }, :status => :bad_request
@@ -34,6 +36,7 @@ class LikesController < ApplicationController
         authenticate!
         if Like.find(params[:id]).user_id == current_user.id
             Like.destroy(params[:id])
+            render json: { message: 'Item deleted' }
         else
             render:json => { :msg => "Like deletion failed.." }, :status => :bad_request
         end

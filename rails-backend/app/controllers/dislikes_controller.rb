@@ -37,6 +37,7 @@ class DislikesController < ApplicationController
         authenticate!
         if Dislike.find(params[:id]).user_id == current_user.id
             Dislike.destroy(params[:id])
+            render json: { message: 'Item deleted' }
         else
             render:json => { :msg => "Dislike deletion failed.." }, :status => :bad_request
         end

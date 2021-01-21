@@ -49,6 +49,7 @@ const postReducer = (state = initialState, action) => {
             }
         }
         case 'LIKE': {
+            // debugger
             let newAllPosts = state.allPosts.filter(post => post.id !== action.like.post_id)
             let likedPost = state.allPosts.find(post => post.id === action.like.post_id)
             likedPost.likes.push(action.like)
