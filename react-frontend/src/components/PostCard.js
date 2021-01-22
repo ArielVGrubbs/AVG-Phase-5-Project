@@ -45,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
   cardActions: {
     display: 'block',
     marginLeft: theme.spacing(.5),
-    // verticalAlign: 'center'
-    // flexDirection: 'row',
-    // justifyContent: 'space-evenly',
-    // alignContent: 'center'
   },
   title: {
     fontSize: 18, 
