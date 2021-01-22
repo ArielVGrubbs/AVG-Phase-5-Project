@@ -43,13 +43,6 @@ const userReducer = (state = initialState, action) => {
                 currentUser: cU
             }
         }
-        // case 'UPDATE_CURRENT_USER':{
-        //     return {
-        //         ...state,
-        //         isLoggedIn: true,
-        //         currentUser: action.user
-        //     }
-        // }
         case 'SET_JOINED': {
             return {
                 ...state,
