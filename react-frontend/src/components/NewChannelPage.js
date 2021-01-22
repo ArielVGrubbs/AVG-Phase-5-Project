@@ -69,53 +69,18 @@ function NewChannelPage() {
             // debugger
             history.push('./channels')
         })
-        // debugger
-        // fetch('http://localhost:3000/posts', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //         'Auth-Key': localStorage.getItem('auth_key')
-        //     },
-        //     body: JSON.stringify({
-        //         postable_type: "Channel",
-        //         postable_id: channel.id,
-        //         title: e.target.querySelector("#title").value,
-        //         content: e.target.querySelector("#content").value,
-        //         user_id: localStorage.getItem('auth_key')
-        //     })
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     console.log(data)
-        //     console.log(posts)
-        //     data.postable = {title:e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value}
-        //     dispatch({type:'ADD_POST', post: data})
-        //     clearForm(e)
-        //     history.push('/dashboard')
-        // })
     }
     return (
         <div>
             <Header />
             <div className={classes.topRibbon}>
                 Create a channel 
-                {/* <p className={classes.topRibbon}>drafts</p> */}
             </div>
             <hr />
             <p>Choose an original name for your new community, already taken names are not allowed.</p>
-            {/* <p>Also choose whether other users will be able to see your community freely, or if they will need an invitation.</p> */}
             <form onSubmit={(e) => handleSubmit(e)}>                
                 <input placeholder='Title' id="title" style={{width: 627}} className={classes.textInputs}/>
-                {/* <select>
-                    <option>Public</option>
-                    <option>Private</option>
-                </select> */}
                 <button type="submit">Submit</button>
-                {/* <Checkbox
-                    defaultChecked
-                    color="primary"
-                    inputProps={{ 'aria-label': 'secondary checkbox' }}
-                /> */}
             </form>
         </div>
     )
