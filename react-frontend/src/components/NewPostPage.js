@@ -99,11 +99,6 @@ function NewPostPage() {
                 <input placeholder='Title' id="title" style={{width: 627}} className={classes.textInputs}/>
                 <input placeholder='Text' id="content" style={{width: 627, height: 200}}/>
                 <button type="submit">Post</button>
-                {/* <Checkbox
-                    defaultChecked
-                    color="primary"
-                    inputProps={{ 'aria-label': 'secondary checkbox' }}
-                /> */}
             </form>
         </div>
     )
