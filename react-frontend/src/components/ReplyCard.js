@@ -18,58 +18,6 @@ import { Box } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-// const useStyles = makeStyles((theme) => ({
-//   icon: {
-//     marginRight: theme.spacing(2),
-//   },
-//   card: {
-//     minWidth: 200,
-//     width: 719.7,
-//     // height:450,
-//     padding: 5,
-//     display: 'flex',
-//     // flexDirection: 'column',
-//     // justifyContent: 'space-evenly',
-//     alignContent: 'center'
-//   },
-//   cardMedia: {
-//     width:150, minHeight:175, margin: 'auto', flex: 1
-//   },
-//   cardContent: {
-//     flexGrow: 1,
-//     display: 'flex',
-//     flexDirection: 'column',
-//     // justifyContent: 'space-evenly'
-//   },
-//   cardActions: {
-//     display: 'block',
-//     marginLeft: theme.spacing(.5),
-//     // verticalAlign: 'center'
-//     // flexDirection: 'row',
-//     // justifyContent: 'space-evenly',
-//     // alignContent: 'center'
-//   },
-//   title: {
-//     fontSize: 18, 
-//     fontWeight: 'bold',
-//     textDecoration: 'none'
-//   },
-//   price: {
-//     color: '#B12704',
-//     fontSize: 17,
-//     fontWeight: 'bold',
-//   },
-//   notInStock: {textAlign: 'center'},
-//   brandLink: {
-//     color: '#212121',
-//     textDecoration: 'none'
-//   },
-//   buttons: {
-//     display: 'block',
-//     width: 83
-//   }
-// }));
-
 function ReplyCard(props) {
     let cardWidth = props.parentWidth - 70
     const useStyles = makeStyles((theme) => ({
