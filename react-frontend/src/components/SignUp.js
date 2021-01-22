@@ -75,10 +75,6 @@ function SignUp() {
     })
   }
 
-  // useEffect(() => {
-  //   setUser(currentUser)
-  // }, [currentUser])
-
   return (
     <Container component="main" maxWidth="xs">
         <CssBaseline />
