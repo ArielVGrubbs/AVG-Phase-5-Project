@@ -6,6 +6,7 @@ const initialState = {
         username: '',
         email: ''
     },
+    notifications: [],
     userFetch: false,
     joined: false
 }
@@ -53,6 +54,17 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 joined: action.joined
+            }
+        }
+        case 'BAN_USER': {
+            let newAllUsers = state.allUsers.filter(u => u.id !== action.channelMember.user_id)
+            let bannedUser = state.allUsers.find(u => u.id === action.channelMember.user_id)
+            bannedUser.channel_members = bannedUser.channel_members.filter(c_m => c_m.channel_id !== action.channelMember.channel_id)
+            let newNotification = `You have been banned from ${action.channelTitle}`
+            return {
+                ...state,
+                allUsers: [...newAllUsers, bannedUser],
+                notifications: [...state.notifications, newNotification]
             }
         }
         default:

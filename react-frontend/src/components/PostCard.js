@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     // minWidth: 200,
-    width: 719.7,
+    width: 500, //719.7,
     // height:450,
     padding: 5,
     display: 'flex',
@@ -268,6 +268,14 @@ function PostCard(props) {
                         <Button size='medium' variant="contained" color="primary" ml={0}>
                           <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
                         </Button>
+                        {(props.moderator) ? 
+                          <div>
+                            <br />
+                            <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
+                              Delete
+                            </Button>
+                          </div> : null
+                        }
                       </div> : 
                       <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box> }
                     </div>}

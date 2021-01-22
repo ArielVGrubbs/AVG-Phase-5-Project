@@ -35,6 +35,7 @@ function PostList() {
             posts.map(post => {if (post.postable_type === "Channel") { return <PostCard key={post.id} post={post}/>}else{return null}})
             }
         </Grid>
+        
     </React.Fragment>
   );
 }

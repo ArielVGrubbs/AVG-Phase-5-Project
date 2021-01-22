@@ -21,6 +21,10 @@ const useStyles = makeStyles((theme) => ({
   },
   ribbonItems: {
     marginLeft: theme.spacing(2)
+  },
+  sortingRibbon: {
+    display: 'block',
+    marginLeft: theme.spacing(5)
   }
 }));
 
@@ -62,6 +66,11 @@ const Header = (props) => {
           handleLoginRender(localStorage.getItem('auth_key') !== 'undefined')
         }
       </ul>
+      <div className={classes.sortingRibbon}>
+        <ul className={classes.header}>
+          <div>Hello There</div>
+        </ul>
+      </div>
     </div>
   )
 }

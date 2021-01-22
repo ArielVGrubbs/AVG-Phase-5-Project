@@ -41,7 +41,10 @@ function NewPostPage() {
     const history = useHistory();
     const dispatch = useDispatch();
 
-    const channels = useSelector(state => state.channels.allChannels)
+    const currentUser = useSelector(state => state.user.currentUser)
+
+    const allChannels = useSelector(state => state.channels.allChannels)
+    let channels = allChannels.filter(ch => ch.channel_members.find(c_m => c_m.user_id === currentUser.id))
     const posts = useSelector(state => state.posts.allPosts)
 
     const clearForm = (e) => {

@@ -42,6 +42,7 @@ const UserPage = () => {
     const [showLiked, setShowLiked] = useState(false)
 
     const [showModerator, setShowModerator] = useState(false)
+    const [showBan, setShowBan] = useState(false)
 
     // const likedPosts = allPosts.filter(post => (post.likes.find(like => like.user_id === currentUser.id)) ? true : false)
     let likedPosts
@@ -95,19 +96,55 @@ const UserPage = () => {
         })
     }
 
+    const handleBanUser = (e) => {
+        e.preventDefault()
+        console.log(e.target)
+
+        let channel = allChannels.find(ch => ch.title === e.target.firstElementChild.value)
+        console.log(allUsers)
+        console.log(userFetch)
+        if(user.channel_members.find(c_m => c_m.channel_id === channel.id)){
+            let channelMember = user.channel_members.find(c_m => c_m.channel_id === channel.id)
+            fetch(`http://localhost:3000/channel_members/${channelMember.id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Auth-Key': localStorage.getItem('auth_key')
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                dispatch({type: 'BAN_USER', channelMember: channelMember, channelTitle: channel.title})
+            })
+        }
+    }
+
     return (
         <div>{(userFetch) ? 
             <div>
             
                 <Header />
                 <div>
-                    {(localStorage.getItem('currentUserUsername') !== URL.username) ? <div><p>Hello {localStorage.getItem('currentUserUsername')}, you're viewing {URL.username}'s page</p><Button onClick={(e) => setShowModerator(!showModerator)}>Make Moderator</Button></div> : <p>Hello {URL.username}</p> }
+                    {(localStorage.getItem('currentUserUsername') !== URL.username) ? <div><p>Hello {localStorage.getItem('currentUserUsername')}, you're viewing {URL.username}'s page</p><Button onClick={(e) => setShowModerator(!showModerator)}>Make Moderator</Button><Button onClick={(e) => setShowBan(!showBan)}>Ban User From Channel</Button></div> : <p>Hello {URL.username}</p> }
                 </div>
                 <div>
                     {(showModerator) ? 
                         <div>
                             <form onSubmit={(e) => handleMakeModerator(e)}>
-                                Select a channel you moderate:
+                                Select a channel you moderate and wish to make this user a moderator of:
+                                <select>
+                                    {currentUsersChannels.map(cUC => <option key={cUC.id}>{cUC.title}</option>)}
+                                </select>
+                                <button type="Submit" className={classes.makeModeratorSubmit} >Submit</button>
+                            </form>
+                        </div> : null}
+                </div>
+                <div>
+                    {(showBan) ? 
+                        <div>
+                            <form onSubmit={(e) => handleBanUser(e)}>
+                                Select a channel you moderate and wish to ban this user from:
                                 <select>
                                     {currentUsersChannels.map(cUC => <option key={cUC.id}>{cUC.title}</option>)}
                                 </select>

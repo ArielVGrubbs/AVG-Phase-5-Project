@@ -30,7 +30,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
     // outlineColor: theme.palette.error.main,
     // outlineWidth: theme.spacing(.5)
-}
+    },
+    moderatorText: {
+        display: 'block'
+    }
 }));
 
 const ChannelPage = () => {
@@ -42,7 +45,8 @@ const ChannelPage = () => {
     const currentUser = useSelector(state => state.user.currentUser)
 
     const allChannels = useSelector(state => state.channels.allChannels)
-    const allPosts = useSelector(state => state.posts.allPosts)
+    const posts = useSelector(state => state.posts.allPosts)
+    const [allPosts, setAllPosts] = useState(posts)
 
     const userFetch = useSelector(state => state.user.userFetch)
 
@@ -52,6 +56,8 @@ const ChannelPage = () => {
     // useEffect(() => {
     //     setJoined(stateJoined)
     // }, [stateJoined])
+
+    const [moderator, setModerator] = useState(false)
 
     let currentChannelPosts = false
     let currentChannel
@@ -67,6 +73,16 @@ const ChannelPage = () => {
         }
         const channelPosts = allPosts.filter(post => post.postable_type === "Channel")
         currentChannelPosts = channelPosts.filter(post => post.postable_id === currentChannel.id)
+    }
+
+    if(currentChannel){
+        // debugger
+        if(currentChannel.channel_owners.find(c_o => c_o.user_id === currentUser.id) && moderator === false){
+            setModerator(true)
+        } else if(!currentChannel.channel_owners.find(c_o => c_o.user_id === currentUser.id) && moderator === true){
+            // debugger
+            setModerator(false)
+        }
     }
     
     const handleJoin = (e) => {
@@ -88,7 +104,7 @@ const ChannelPage = () => {
                 console.log(data)
                 // debugger
                 // dispatch({type: 'SET_JOINED', joined: false})
-                console.log(`You have successfully left ${currentChannel.title}'s membership.`)
+                console.log(`You have successfully left /r/${currentChannel.title}'s membership.`)
             })
         } else {
             // dispatch({type: 'SET_JOINED', joined: true})
@@ -109,10 +125,14 @@ const ChannelPage = () => {
                 console.log(data)
                 // debugger
                 // dispatch({type: 'SET_JOINED', joined: true})
-                console.log(`You have successfully become a member of ${currentChannel.title}.`)
+                console.log(`You have successfully become a member of /r/${currentChannel.title}.`)
             })
         }
 
+    }
+
+    const removePost = (post) => {
+        setAllPosts(allPosts.filter(p => p.id !== post.id))
     }
 
     return (
@@ -124,10 +144,12 @@ const ChannelPage = () => {
                         <div className={classes.topRibbon}>
                             Channel: /readit/{currentChannel.title}
                             {(stateJoined) ? <Button variant="outlined" className={classes.joinedButton} onClick={(e) => handleJoin(e)} >Joined</Button> : <Button variant="contained" className={classes.joinButton} disableElevation onClick={(e) => handleJoin(e)}>Join</Button> }
+                            
                         </div>
                     </div> : null}
+                    <div className={classes.moderatorText}>{(moderator) ? <p>You are a moderator of this channel, and as such may delete posts that do not adhere to the channel's rules.</p> : null }</div>
                     
-                    {currentChannelPosts.map(post => <PostCard key={post.id} post={post}/>)}
+                    {currentChannelPosts.map(post => <PostCard key={post.id} post={post} moderator={moderator} deletePost={removePost} channel={currentChannel}/>)}
                 </div>
                 : null
             }

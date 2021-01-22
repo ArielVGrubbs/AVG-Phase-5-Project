@@ -8,13 +8,13 @@ class UsersController < ApplicationController
 
     def index
         users = User.all
-        render json: users, except: [:created_at, :updated_at], include: [:likes, :dislikes]
+        render json: users, except: [:created_at, :updated_at], include: [:likes, :dislikes, :channel_members, :channel_owners]
     end
 
     def show
         user = User.find_by(id: params[:id])
         if user
-            render json: user.slice(:id, :email, :username, :password)
+            render json: user, except: [:created_at, :updated_at], include: [:likes, :dislikes, :channel_members, :channel_owners]
         else
             render json: { message: 'Item not found' }
         end
