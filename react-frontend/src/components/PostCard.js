@@ -17,6 +17,10 @@ import Rating from '@material-ui/lab/Rating';
 import { Box } from '@material-ui/core';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import BookmarkIcon from '@material-ui/icons/Bookmark';
+
+
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -24,13 +28,18 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     // minWidth: 200,
-    width: 500, //719.7,
+    width: 719.7,
     // height:450,
-    padding: 5,
+    padding: 0,
     display: 'flex',
     // flexDirection: 'column',
     // justifyContent: 'space-evenly',
-    alignContent: 'center'
+    alignContent: 'center',
+    // marginLeft: theme.spacing(30)
+    margin: 'auto',
+    cursor: 'pointer',
+    border: '1px solid',
+    borderColor: '#C3C3C3'
   },
   cardMedia: {
     width:150, minHeight:175, margin: 'auto', flex: 1
@@ -39,16 +48,22 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     display: 'flex',
     flexDirection: 'column',
-    marginRight: theme.spacing(10)
+    marginRight: theme.spacing(10),
+    marginLeft: theme.spacing(.8),
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(0)
     // justifyContent: 'space-evenly'
   },
   cardActions: {
     display: 'block',
-    marginLeft: theme.spacing(.5),
+    // marginLeft: theme.spacing(.5),
+    backgroundColor: '#F8F8F8',
+    // width: '35px',
+    cursor: 'auto'
   },
   title: {
     fontSize: 18, 
-    fontWeight: 'bold',
+    color: '#222222',
     textDecoration: 'none'
   },
   price: {
@@ -63,13 +78,76 @@ const useStyles = makeStyles((theme) => ({
   },
   buttons: {
     display: 'block',
-    width: 83
+    width: 83,
+    backgroundColor: '#0079d3',
+    marginLeft: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1)
+  },
+  altButtons: {
+    backgroundColor: '#0079d3',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1)
   },
   titleLink: {
-    color: 'black',
+    color: '#222222',
     textDecoration: 'none',
-    fontWeight: 'bold'
-  }
+    // fontWeight: 'bold',
+    fontSize: '18px'
+  },
+  likeArrow: {
+    color: '#848484',
+    cursor: 'pointer'
+  },
+  homeSelfLikeArrow: {
+    color: '#848484',
+  },
+  likeCounter: {
+    marginLeft: theme.spacing(1.5),
+    marginBottom: theme.spacing(.7),
+    cursor: 'initial'
+  },
+  channelUrl: {
+    display: 'flex'
+  },
+  postedBy: {
+    color: '#A7A7A7',
+    textDecoration: 'none',
+    marginLeft: theme.spacing(.5)
+  },
+  commentsIcon: {
+    fontSize: '15px',
+    marginRight: theme.spacing(.5)
+  },
+  commentsText: {
+    color: '#A7A7A7',
+    paddingBottom: theme.spacing(0),
+    paddingTop: theme.spacing(5)
+  },
+  saveIcon: {
+    fontSize: '18px',
+    // paddingTop: theme.spacing(.5)
+  },
+  selfLikeCounter: {
+    marginLeft: theme.spacing(1.5),
+    marginBottom: theme.spacing(.7),
+    marginTop: theme.spacing(4.8),
+    cursor: 'auto'
+  },
+  postContent: {
+    color: '#626262',
+    fontSize: '15px'
+  },
+  hiddenText: {
+    color: '#F8F8F8'
+  },
+  homeSelfLikeCounter: {
+    marginLeft: theme.spacing(.7),
+    marginBottom: theme.spacing(.7),
+    marginTop: theme.spacing(2),
+    cursor: 'auto',
+    color: '#848484',
+  },
 }));
 
 function PostCard(props) {
@@ -242,28 +320,24 @@ function PostCard(props) {
   return (
     <React.Fragment>
         
-            <Grid item key={props.post.id}>
-                <Card className={classes.card}>
+            <Grid item key={props.post.id} >
+                <Card className={classes.card} variant="outlined">
                     {(props.userPage) ? 
                       <div className={classes.cardActions}>
                       <Button onClick={(e) => handleStartEdit(e)} size='medium' variant="contained" color="primary" className={classes.buttons}>
                         Edit
                       </Button>
                       <br />
-                      <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
+                      <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0} className={classes.altButtons}>
                         Delete
                       </Button>
-                      <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
+                      <Box className={classes.homeSelfLikeCounter}>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
                       </div> : 
                     <div className={classes.cardActions}> 
                       {(props.post.user.id !== currentUser.id) ? <div>
-                        <Button size='medium' variant="contained" color="primary">
-                          <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
-                        </Button>
-                        <Box>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
-                        <Button size='medium' variant="contained" color="primary" ml={0}>
-                          <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
-                        </Button>
+                        <ArrowDropUpIcon onClick={(e) => handleUpVote(e)} fontSize='large' className={classes.likeArrow}/>
+                        <Box className={classes.likeCounter}>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
+                        <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)} fontSize='large' className={classes.likeArrow}/>
                         {(props.moderator) ? 
                           <div>
                             <br />
@@ -273,31 +347,31 @@ function PostCard(props) {
                           </div> : null
                         }
                       </div> : 
-                      <Box>Likes: {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box> }
+                      <Box className={classes.selfLikeCounter}>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}<div className={classes.hiddenText}>hel</div></Box> }
                     </div>}
-                    <CardContent className={classes.cardContent} >
-                        <Typography>
-                            Channel: {(props.post.postable) ? props.post.postable.title : null}
+                    <div className={classes.cardContent} >
+                        <Typography className={classes.channelUrl}>
+                            r/{(props.post.postable) ? props.post.postable.title : null} <div className={classes.postedBy}>○ Posted by: u/<Link to={`/u/${props.post.user.username}`} className={classes.postedBy}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link></div>
                         </Typography>
+                        {/* <Typography >
+                          Posted by: <Link to={`/user/${props.post.user.username}`}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link>
+                        </Typography> */}
                         <br />
-                        {(!editForm) ? <div><Typography>
-                            <Link to={`/posts/${props.post.id}`} className={classes.titleLink}>Title: {formTitle}</Link>
+                        {(!editForm) ? <div><Typography >
+                            <Link to={`/posts/${props.post.id}`} className={classes.titleLink}>{formTitle}</Link>
                         </Typography>
-                        <Typography>
-                            Content: {formContent}
+                        <Typography className={classes.postContent}>
+                            {formContent}
                         </Typography></div> : 
                         <form onSubmit={(e) => handleFormSubmit(e)}>
                           <input placeholder='Title' id="title" style={{width: 600}} value={formTitle} onChange={(e) => handleFormChange(e)}/>
                           <input placeholder='Text' id="content" style={{width: 600, height: 165}} value={formContent} onChange={(e) => handleFormChange(e)}/>
                           <button type="submit">Post</button>
                         </form>}
-                        <Typography>
-                            <Link to={`/user/${props.post.user.username}`}>Posting User: {(props.post.user) ? props.post.user.username : currentUser.username}</Link>
+                        <Typography className={classes.commentsText}>
+                            <ChatBubbleIcon fontSize="small" className={classes.commentsIcon}/>{(props.post.posts) ? props.post.posts.length : 0} Comments 
                         </Typography>
-                        <Typography>
-                            # of replies: {(props.post.posts) ? props.post.posts.length : 0}
-                        </Typography>
-                    </CardContent>
+                    </div>
                 </Card>
             </Grid>
     </React.Fragment>

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   topRibbon: {
     display: 'flex'
-  }
+  },
 }));
 
 const PostPage = () => {

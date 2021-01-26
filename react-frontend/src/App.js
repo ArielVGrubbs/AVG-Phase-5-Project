@@ -101,7 +101,7 @@ function App() {
             return <ChannelPage />
           }}/>
 
-          <Route path="/user/:username" component={() => {
+          <Route path="/u/:username" component={() => {
             return <UserPage />
           }}/>
 

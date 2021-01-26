@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
         flexFlow: 'row wrap',
         paddingTop: theme.spacing(3),
         paddingBottom: theme.spacing(3),
-        marginLeft: theme.spacing(10)
+        // marginLeft: theme.spacing(10)
     }
 }));
 
