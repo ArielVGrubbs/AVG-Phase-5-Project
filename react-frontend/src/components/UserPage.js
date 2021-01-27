@@ -231,7 +231,6 @@ const UserPage = () => {
 
                 <Card className={classes.card} variant="outlined">
                     <Avatar aria-label="recipe" className={classes.avatar}>
-                        {/* {()} */}
                         <AndroidIcon fontSize='large'/>
                     </Avatar>
                     <div>

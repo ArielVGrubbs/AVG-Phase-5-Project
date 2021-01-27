@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
 import PostCard from '../components/PostCard'
+import { getThemeProps } from '@material-ui/styles';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -20,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function PostList() {
+function PostList(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   let posts = useSelector(state => state.posts.allPosts)
+  // posts.filter(p => p.title === props.searchContent || p.content === props.searchContent)
   posts.sort((a, b) => (a.likes.length > b.likes.length) ? -1 : 1)
   // products.sort((a, b) => (a.price > b.price) ? 1 : -1)
 

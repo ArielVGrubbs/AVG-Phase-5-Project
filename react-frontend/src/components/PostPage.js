@@ -56,7 +56,45 @@ const useStyles = makeStyles((theme) => ({
     width: '100%'
   },
   replySection: {
-    
+    width: 721.7,
+    backgroundColor: 'white',
+    height: '100%',
+    paddingTop: theme.spacing(3),
+    margin: 'auto',
+    marginLeft: theme.spacing(10),
+    borderTop: '10px solid',
+    borderColor: '#DADADA'
+  },
+  textInputs: {
+    display: 'block',
+    fontFamily: 'Arial',
+    margin: 'auto',
+    // margin: theme.spacing(1.7,0,.5,1.7),
+    borderColor: '#E5E5E5',
+    border: '1px solid'
+  },
+  submitButton: {
+    marginLeft: theme.spacing(72.9),
+    marginBottom: theme.spacing(1.7),
+    marginTop: theme.spacing(1),
+    height: theme.spacing(3.8),
+    width: theme.spacing(11),
+    borderRadius: '25px',
+    border: '0px solid',
+    backgroundColor: '#0079d3',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '13px',
+    cursor: 'pointer'
+  },
+  commentAsText: {
+    marginLeft: theme.spacing(6),
+    fontSize: '13px',
+    color: '#979797',
+    // cursor: 'auto',
+  },
+  commentAsLink: {
+    color: '#979797'
   }
 }));
 
@@ -110,15 +148,22 @@ const PostPage = () => {
               </div>
               <div className={classes.bottomRibbon}>
                   <div className={classes.topSpacer}></div>
+                  <PostCard key={currentPost.id} post={currentPost} postPage={true}/>
                   <div className={classes.replySection}>
-                      <PostCard key={currentPost.id} post={currentPost} postPage={true}/>
-                      Comment as <Link to={`/user/${currentUser.username}`}>{currentUser.username}</Link>
-                      <form onSubmit={(e) => handleSubmit(e)} onClick={() => setReplyPost(currentPost)}>
+                      <div className={classes.commentAsText}>
+                          Comment as <Link to={`/user/${currentUser.username}`} className={classes.commentAsLink}>{currentUser.username}</Link>
+                      </div>
+                      
+                      {/* <form onSubmit={(e) => handleSubmit(e)} onClick={() => setReplyPost(currentPost)}>
                           <input placeholder='What are your thoughts?' id="content" style={{width: 690, height: 200}}/>
                           <button type="submit">Post</button>
+                      </form> */}
+                      <form onSubmit={(e) => handleSubmit(e)} onClick={() => setReplyPost(currentPost)}>
+                          <textarea id="content" placeholder="What are you thoughts?" cols='90' rows='9' className={classes.textInputs}></textarea>
+                          <button type="submit" className={classes.submitButton}>Comment</button>
                       </form>
                       <Grid container className={classes.pList} spacing={2}>
-                          {(currentPost.posts) ? currentPost.posts.map(post => <ReplyCard key={post.id} post={post} handleSubmit={handleSubmit} setReplyPost={setReplyPost} parentWidth={789.7}/>) : null}
+                          {(currentPost.posts) ? currentPost.posts.map(post => <ReplyCard key={post.id} post={post} handleSubmit={handleSubmit} setReplyPost={setReplyPost} parentWidth={770}/>) : null}
                       </Grid>
                   </div>
               </div>

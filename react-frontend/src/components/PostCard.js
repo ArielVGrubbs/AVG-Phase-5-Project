@@ -24,10 +24,13 @@ function PostCard(props) {
 
   const useStyles = makeStyles((theme) => {
     let marginDeterminer
+    let borderRadiusDeterminer
     if(props.postPage){
-      marginDeterminer = theme.spacing(0,0,5,10)
+      marginDeterminer = theme.spacing(0,0,0,10)
+      borderRadiusDeterminer = '0px'
     } else {
       marginDeterminer = 'auto'
+      borderRadiusDeterminer = '5px'
     }
     return ({
     icon: {
@@ -47,7 +50,8 @@ function PostCard(props) {
       marginTop: theme.spacing(0),
       cursor: 'pointer',
       border: '1px solid',
-      borderColor: '#C3C3C3'
+      borderColor: '#DADADA',
+      borderRadius: borderRadiusDeterminer
     },
     cardMedia: {
       width:150, minHeight:175, margin: 'auto', flex: 1
@@ -122,6 +126,11 @@ function PostCard(props) {
       color: '#A7A7A7',
       textDecoration: 'none',
       marginLeft: theme.spacing(.5)
+    },
+    postedByLink: {
+      color: '#A7A7A7',
+      textDecoration: 'none',
+      // marginLeft: theme.spacing(.5)
     },
     commentsIcon: {
       fontSize: '15px',
@@ -384,7 +393,7 @@ function PostCard(props) {
                     </div>}
                     <div className={classes.cardContent} >
                         <Typography className={classes.channelUrl}>
-                            r/{(props.post.postable) ? props.post.postable.title : null} <div className={classes.postedBy}>○ Posted by: u/<Link to={`/u/${props.post.user.username}`} className={classes.postedBy}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link></div>
+                            r/{(props.post.postable) ? props.post.postable.title : null} <div className={classes.postedBy}>○ Posted by: u/<Link to={`/u/${props.post.user.username}`} className={classes.postedByLink}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link></div>
                         </Typography>
                         {/* <Typography >
                           Posted by: <Link to={`/user/${props.post.user.username}`}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link>
