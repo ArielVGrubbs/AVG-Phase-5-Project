@@ -212,7 +212,7 @@ function PostCard(props) {
   const [formContent, setFormContent] = useState(props.post.content)
 
   const handleStartEdit = (e) => {
-    setEditForm(true)
+    setEditForm(!editForm)
   }
 
   const handleFormSubmit = (e) => {
