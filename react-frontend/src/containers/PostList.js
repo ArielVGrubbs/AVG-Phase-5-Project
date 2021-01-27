@@ -24,17 +24,19 @@ const useStyles = makeStyles((theme) => ({
 function PostList(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  // debugger
 
-  let posts = useSelector(state => state.posts.allPosts)
+  // let posts = useSelector(state => state.posts.allPosts)
   // posts.filter(p => p.title === props.searchContent || p.content === props.searchContent)
-  posts.sort((a, b) => (a.likes.length > b.likes.length) ? -1 : 1)
+  // posts.sort((a, b) => (a.likes.length > b.likes.length) ? -1 : 1)
   // products.sort((a, b) => (a.price > b.price) ? 1 : -1)
 
   return (
     <React.Fragment>
         <Grid container className={classes.pList} spacing={2}>
-            {
-            posts.map(post => {if (post.postable_type === "Channel") { return <PostCard key={post.id} post={post}/>}else{return null}})
+            {(props.posts) ?
+            props.posts.map(post => {if (post.postable_type === "Channel") { return <PostCard key={post.id} post={post}/>}else{return null}})
+            : null
             }
         </Grid>
         

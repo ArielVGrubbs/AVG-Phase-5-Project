@@ -139,6 +139,12 @@ const Header = (props) => {
     }
   }
 
+  const handleSearchChange = (e) => {
+    e.preventDefault()
+    // debugger
+    props.setSearchContent(e.target.value)
+  }
+
   return (
     <div className={classes.header}>
       <Link className={classes.readitLogoText} to="/dashboard"> <Avatar className={classes.readitLogo}><ChildCareIcon fontSize='large'/></Avatar>readit </Link>
@@ -154,6 +160,7 @@ const Header = (props) => {
               input: classes.inputInput,
             }}
             inputProps={{ 'aria-label': 'search' }}
+            onChange={(e) => handleSearchChange(e)}
           />
         </div>
         {/* <select>
