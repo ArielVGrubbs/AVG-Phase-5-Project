@@ -125,6 +125,10 @@ const useStyles = makeStyles((theme) => ({
     hintText: {
         color: '#AEAEAE',
         marginBottom: theme.spacing(1)
+    },
+    emailText: {
+        marginLeft: theme.spacing(2),
+        fontSize: '13px',
     }
 }));
 
@@ -236,6 +240,9 @@ const UserPage = () => {
                     <div>
                         <div className={classes.userName}>
                             u/{URL.username}
+                        </div>
+                        <div className={classes.emailText}>
+                            {user.email}
                         </div>
                         <div className={classes.postsCounter}>
                             Posts: {userPosts.length} <div className={classes.textDivider}>○</div> Channels: {(user) ? user.channel_members.length : null}

@@ -218,7 +218,7 @@ const ChannelPage = () => {
                         <div className={classes.midBackDrop}>
                             <div className={classes.channelRibbon}>
                                 <div className={classes.channelTitle}>
-                                    Memes
+                                    {currentChannel.title}
                                     {(stateJoined) ? <Button variant="outlined" className={classes.joinedButton} onClick={(e) => handleJoin(e)} >Joined</Button> : <Button variant="contained" className={classes.joinButton} disableElevation onClick={(e) => handleJoin(e)}>Join</Button> }
                                 </div>
                                 

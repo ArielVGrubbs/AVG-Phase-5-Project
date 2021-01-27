@@ -178,7 +178,27 @@ function PostCard(props) {
       marginTop: theme.spacing(11),
       borderRadius: '20px',
       backgroundColor: theme.palette.error.main
-    }
+    },
+    submitButton: {
+      marginLeft: theme.spacing(62.3),
+      marginBottom: theme.spacing(1.7),
+      marginTop: theme.spacing(1),
+      height: theme.spacing(3.8),
+      width: theme.spacing(9),
+      borderRadius: '25px',
+      border: '0px solid',
+      backgroundColor: '#0079d3',
+      color: 'white',
+      fontWeight: 'bold',
+      cursor: 'pointer'
+    },
+    textInputs: {
+      display: 'block',
+      fontFamily: 'Arial',
+      margin: theme.spacing(1.7,0,.5,1.7),
+      borderColor: '#E5E5E5',
+      border: '1px solid'
+    },
   })});
 
   const classes = useStyles();
@@ -393,7 +413,17 @@ function PostCard(props) {
                     </div>}
                     <div className={classes.cardContent} >
                         <Typography className={classes.channelUrl}>
-                            r/{(props.post.postable) ? props.post.postable.title : null} <div className={classes.postedBy}>○ Posted by: u/<Link to={`/u/${props.post.user.username}`} className={classes.postedByLink}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link></div>
+                            {(props.post.postable_type === 'Channel') 
+                            ? 'r/' : null }
+                            {(props.post.postable) 
+                            ? props.post.postable.title
+                            : null} 
+                            <div className={classes.postedBy}>
+                              ○ Posted by: u/
+                              <Link to={`/u/${props.post.user.username}`} className={classes.postedByLink}>
+                                {(props.post.user) ? props.post.user.username : currentUser.username}
+                              </Link>
+                            </div>
                         </Typography>
                         {/* <Typography >
                           Posted by: <Link to={`/user/${props.post.user.username}`}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link>
@@ -406,9 +436,16 @@ function PostCard(props) {
                             {formContent}
                         </Typography></div> : 
                         <form onSubmit={(e) => handleFormSubmit(e)}>
-                          <input placeholder='Title' id="title" style={{width: 600}} value={formTitle} onChange={(e) => handleFormChange(e)}/>
+                          {/* <input placeholder='Title' id="title" style={{width: 600}} value={formTitle} onChange={(e) => handleFormChange(e)}/>
                           <input placeholder='Text' id="content" style={{width: 600, height: 165}} value={formContent} onChange={(e) => handleFormChange(e)}/>
-                          <button type="submit">Post</button>
+                          <button type="submit">Post</button> */}
+                          {(formTitle) ? 
+                            <input placeholder='Title(max 300)' value={formTitle} id="title" style={{width: 550}} className={classes.textInputs}/>
+                            : null
+                          }
+                          
+                          <textarea id="content" placeholder="Text(optional)" cols='80' rows='8' className={classes.textInputs} value={formContent}></textarea>
+                          <button type="submit" className={classes.submitButton}>Edit</button>
                         </form>}
                         <Typography className={classes.commentsText}>
                             <ChatBubbleIcon fontSize="small" className={classes.commentsIcon}/>{(props.post.posts) ? props.post.posts.length : 0} Comments 

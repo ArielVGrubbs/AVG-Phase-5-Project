@@ -124,7 +124,7 @@ const Header = (props) => {
         return (
           <div className={classes.userStateButtons}>
             <AccountCircleIcon className={classes.supplementaryIcon}/>
-            <Link to={`/u/${localStorage.getItem('currentUserUsername')}`} className={classes.ribbonItems}> Profile </Link>
+            <Link to={`/u/${localStorage.getItem('currentUserUsername')}`} className={classes.ribbonItems}>{localStorage.getItem('currentUserUsername')}</Link>
             <ExitToAppIcon className={classes.supplementaryIcon}/>
             <Link to="/logout" className={classes.ribbonItems}> Logout </Link>
           </div>
