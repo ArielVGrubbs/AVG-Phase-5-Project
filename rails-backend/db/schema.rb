@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_174146) do
 
   create_table "channels", force: :cascade do |t|
     t.string "title"
+    t.text "description"
     t.string "image_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

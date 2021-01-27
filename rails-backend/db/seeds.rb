@@ -1,7 +1,7 @@
 ariel = User.create(username:"ArielVGrubbs", password:"1234", email:"arielvictor1234@gmail.com")
 tony = User.create(username:"AnthonyEGrubbs", password:"1234", email:"anthonyedwards1234@gmail.com")
 
-r_slash_memes = Channel.create(title:"memes")
+r_slash_memes = Channel.create(title:"memes", description:'The penultimate location for all of your dank meme needs')
 
 ariel_meme = ChannelOwner.create(user_id:ariel.id, channel_id:r_slash_memes.id)
 # tony_meme = ChannelOwner.create(user_id:tony.id, channel_id:r_slash_memes.id)

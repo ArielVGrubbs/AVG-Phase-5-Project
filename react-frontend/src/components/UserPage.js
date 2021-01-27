@@ -109,7 +109,8 @@ const useStyles = makeStyles((theme) => ({
     },
     postsCounter: {
         marginLeft: theme.spacing(2),
-        display: 'flex'
+        display: 'flex',
+        marginTop: theme.spacing(2.5)
     },
     textDivider: {
         marginLeft: theme.spacing(2),
@@ -237,18 +238,18 @@ const UserPage = () => {
                         <div className={classes.userName}>
                             u/{URL.username}
                         </div>
-                        <p className={classes.postsCounter}>
+                        <div className={classes.postsCounter}>
                             Posts: {userPosts.length} <div className={classes.textDivider}>○</div> Channels: {(user) ? user.channel_members.length : null}
-                        </p>
-                        
+                        </div>
+                        {/* fix this later */}
                         {
                         (localStorage.getItem('currentUserUsername') !== URL.username) 
                         ? 
-                        <div>
+                        <p>
                             <Button onClick={(e) => setShowModerator(!showModerator)} className={classes.userButtons} color="primary" variant="contained" disableElevation>Make Moderator</Button>
                             <Button onClick={(e) => setShowBan(!showBan)} className={classes.userButtons} color="primary" variant="contained" disableElevation>Ban User From Channel</Button>
                             <Button onClick={() => showLikedPosts()} className={classes.userButtons} color="primary" variant="contained" disableElevation>Liked Posts</Button>
-                        </div> 
+                        </p> 
                         : 
                         <p>
                             <Button onClick={() => showLikedPosts()} className={classes.userButtons} color="primary" variant="contained" disableElevation>Liked Posts</Button>
