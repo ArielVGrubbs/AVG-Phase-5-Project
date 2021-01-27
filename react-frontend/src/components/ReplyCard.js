@@ -199,15 +199,31 @@ function ReplyCard(props) {
         
             {(post) ? 
             <Grid item key={post.id}>
-                <Card className={classes.card}>
-                    <div>{(post.user.id !== currentUser.id) ? <div className={classes.cardActions}>
-                    <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary">
-                      <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
-                    </Button>
-                    <Box>{ (post.likes) ? post.likes.length-post.dislikes.length : 0}</Box>
-                    <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
-                      <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
-                    </Button></div> : null } </div>
+                <Card className={classes.card} variant="outlined">
+                    <div>
+                      {(post.user.id !== currentUser.id) 
+                      ? 
+                      <div className={classes.cardActions}>
+                        {/* <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary"> */}
+                          <ArrowDropUpIcon onClick={(e) => handleUpVote(e)}/>
+                        {/* </Button> */}
+                        <Box>
+                          {
+                          (post.likes) 
+                          ?
+                          post.likes.length-post.dislikes.length 
+                          : 
+                          0
+                          }
+                        </Box>
+                        <Button onClick={(e) => console.log(e.target)} size='medium' variant="contained" color="primary" ml={0}>
+                          <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)}/>
+                        </Button>
+                      </div> 
+                      : 
+                      null 
+                      } 
+                    </div>
                     <CardContent className={classes.cardContent} >
                         <br />
                         <Typography>

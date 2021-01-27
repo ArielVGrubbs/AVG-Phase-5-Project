@@ -58,7 +58,8 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
-        // paddingTop: theme.spacing(2)
+        // paddingTop: theme.spacing(2),
+        color: '#8B8B8B'
     },
     topBackDrop: {
         width: '100%',
@@ -72,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     },
     bottomBackDrop: {
         width: '100%',
-        height: theme.spacing(200),
+        height: '100%', //theme.spacing(200),
         backgroundColor: '#273c75'
     },
     channelRibbon: {
@@ -240,7 +241,6 @@ const ChannelPage = () => {
                                     You are a moderator of this channel, and as such may delete posts that do not adhere to the channel's rules.
                                 </div> 
                             </Card>
-                            
                             : 
                             null 
                             }

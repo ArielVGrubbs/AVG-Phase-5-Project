@@ -20,137 +20,158 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
-
-
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  card: {
-    // minWidth: 200,
-    width: 719.7,
-    // height:450,
-    padding: 0,
-    display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'space-evenly',
-    alignContent: 'center',
-    // marginLeft: theme.spacing(30)
-    margin: 'auto',
-    cursor: 'pointer',
-    border: '1px solid',
-    borderColor: '#C3C3C3'
-  },
-  cardMedia: {
-    width:150, minHeight:175, margin: 'auto', flex: 1
-  },
-  cardContent: {
-    flexGrow: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    marginRight: theme.spacing(10),
-    marginLeft: theme.spacing(.8),
-    paddingTop: theme.spacing(0),
-    paddingBottom: theme.spacing(0)
-    // justifyContent: 'space-evenly'
-  },
-  cardActions: {
-    display: 'block',
-    // marginLeft: theme.spacing(.5),
-    backgroundColor: '#F8F8F8',
-    // width: '35px',
-    cursor: 'auto'
-  },
-  title: {
-    fontSize: 18, 
-    color: '#222222',
-    textDecoration: 'none'
-  },
-  price: {
-    color: '#B12704',
-    fontSize: 17,
-    fontWeight: 'bold',
-  },
-  notInStock: {textAlign: 'center'},
-  brandLink: {
-    color: '#212121',
-    textDecoration: 'none'
-  },
-  buttons: {
-    display: 'block',
-    width: 83,
-    backgroundColor: '#0079d3',
-    marginLeft: theme.spacing(1),
-    marginTop: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  },
-  altButtons: {
-    backgroundColor: '#0079d3',
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1)
-  },
-  titleLink: {
-    color: '#222222',
-    textDecoration: 'none',
-    // fontWeight: 'bold',
-    fontSize: '18px'
-  },
-  likeArrow: {
-    color: '#848484',
-    cursor: 'pointer'
-  },
-  homeSelfLikeArrow: {
-    color: '#848484',
-  },
-  likeCounter: {
-    marginLeft: theme.spacing(1.5),
-    marginBottom: theme.spacing(.7),
-    cursor: 'initial'
-  },
-  channelUrl: {
-    display: 'flex'
-  },
-  postedBy: {
-    color: '#A7A7A7',
-    textDecoration: 'none',
-    marginLeft: theme.spacing(.5)
-  },
-  commentsIcon: {
-    fontSize: '15px',
-    marginRight: theme.spacing(.5)
-  },
-  commentsText: {
-    color: '#A7A7A7',
-    paddingBottom: theme.spacing(0),
-    paddingTop: theme.spacing(5)
-  },
-  saveIcon: {
-    fontSize: '18px',
-    // paddingTop: theme.spacing(.5)
-  },
-  selfLikeCounter: {
-    marginLeft: theme.spacing(1.5),
-    marginBottom: theme.spacing(.7),
-    marginTop: theme.spacing(4.8),
-    cursor: 'auto'
-  },
-  postContent: {
-    color: '#626262',
-    fontSize: '15px'
-  },
-  hiddenText: {
-    color: '#F8F8F8'
-  },
-  homeSelfLikeCounter: {
-    marginLeft: theme.spacing(.7),
-    marginBottom: theme.spacing(.7),
-    marginTop: theme.spacing(2),
-    cursor: 'auto',
-    color: '#848484',
-  },
-}));
-
 function PostCard(props) {
+
+  const useStyles = makeStyles((theme) => {
+    let marginDeterminer
+    if(props.postPage){
+      marginDeterminer = theme.spacing(0,0,5,10)
+    } else {
+      marginDeterminer = 'auto'
+    }
+    return ({
+    icon: {
+      marginRight: theme.spacing(2),
+    },
+    card: {
+      // minWidth: 200,
+      width: 719.7,
+      // height:450,
+      padding: 0,
+      display: 'flex',
+      // flexDirection: 'column',
+      // justifyContent: 'space-evenly',
+      alignContent: 'center',
+      // marginLeft: theme.spacing(30)
+      margin: marginDeterminer,
+      marginTop: theme.spacing(0),
+      cursor: 'pointer',
+      border: '1px solid',
+      borderColor: '#C3C3C3'
+    },
+    cardMedia: {
+      width:150, minHeight:175, margin: 'auto', flex: 1
+    },
+    cardContent: {
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      marginRight: theme.spacing(10),
+      marginLeft: theme.spacing(.8),
+      paddingTop: theme.spacing(0),
+      paddingBottom: theme.spacing(0)
+      // justifyContent: 'space-evenly'
+    },
+    cardActions: {
+      display: 'block',
+      // marginLeft: theme.spacing(.5),
+      backgroundColor: '#F8F8F8',
+      // width: '35px',
+      cursor: 'auto'
+    },
+    title: {
+      fontSize: 18, 
+      color: '#222222',
+      textDecoration: 'none'
+    },
+    price: {
+      color: '#B12704',
+      fontSize: 17,
+      fontWeight: 'bold',
+    },
+    notInStock: {textAlign: 'center'},
+    brandLink: {
+      color: '#212121',
+      textDecoration: 'none'
+    },
+    buttons: {
+      display: 'block',
+      width: 83,
+      backgroundColor: '#0079d3',
+      marginLeft: theme.spacing(1),
+      marginTop: theme.spacing(1),
+      marginRight: theme.spacing(1)
+    },
+    altButtons: {
+      backgroundColor: '#0079d3',
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1)
+    },
+    titleLink: {
+      color: '#222222',
+      textDecoration: 'none',
+      // fontWeight: 'bold',
+      fontSize: '18px'
+    },
+    likeArrow: {
+      color: '#848484',
+      cursor: 'pointer'
+    },
+    homeSelfLikeArrow: {
+      color: '#848484',
+    },
+    likeCounter: {
+      marginLeft: theme.spacing(1.5),
+      marginBottom: theme.spacing(.7),
+      cursor: 'initial'
+    },
+    channelUrl: {
+      display: 'flex'
+    },
+    postedBy: {
+      color: '#A7A7A7',
+      textDecoration: 'none',
+      marginLeft: theme.spacing(.5)
+    },
+    commentsIcon: {
+      fontSize: '15px',
+      marginRight: theme.spacing(.5)
+    },
+    commentsText: {
+      color: '#A7A7A7',
+      paddingBottom: theme.spacing(0),
+      paddingTop: theme.spacing(5),
+      display: 'inline-flex'
+    },
+    saveIcon: {
+      fontSize: '18px',
+      // paddingTop: theme.spacing(.5)
+    },
+    selfLikeCounter: {
+      marginLeft: theme.spacing(1.5),
+      marginBottom: theme.spacing(.7),
+      marginTop: theme.spacing(4.8),
+      cursor: 'auto'
+    },
+    postContent: {
+      color: '#626262',
+      fontSize: '15px'
+    },
+    hiddenText: {
+      color: '#F8F8F8'
+    },
+    altHiddenText: {
+      color: '#F8F8F8',
+      marginTop: theme.spacing(1.8)
+    },
+    homeSelfLikeCounter: {
+      marginLeft: theme.spacing(.7),
+      marginBottom: theme.spacing(.7),
+      marginTop: theme.spacing(2),
+      cursor: 'auto',
+      color: '#848484',
+    },
+    deletePostButton: {
+      // display:'inline-flex',
+      // marginLeft: theme.spacing(48),
+      // marginBottom: theme.spacing(2),
+      marginRight: theme.spacing(2),
+      marginTop: theme.spacing(11),
+      borderRadius: '20px',
+      backgroundColor: theme.palette.error.main
+    }
+  })});
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -338,16 +359,28 @@ function PostCard(props) {
                         <ArrowDropUpIcon onClick={(e) => handleUpVote(e)} fontSize='large' className={classes.likeArrow}/>
                         <Box className={classes.likeCounter}>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
                         <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)} fontSize='large' className={classes.likeArrow}/>
-                        {(props.moderator) ? 
+                        {/* {(props.moderator) ? 
                           <div>
                             <br />
                             <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
                               Delete
                             </Button>
-                          </div> : null
-                        }
+                          </div>
+                           : null
+                        } */}
                       </div> : 
-                      <Box className={classes.selfLikeCounter}>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}<div className={classes.hiddenText}>hel</div></Box> }
+                      <div>
+                        <Box className={classes.selfLikeCounter}>
+                          {(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}
+                          <div className={classes.altHiddenText}>
+                            hel
+                          </div>
+                        </Box>
+                        {/* <br />
+                        <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
+                          Delete
+                        </Button> */}
+                      </div>}
                     </div>}
                     <div className={classes.cardContent} >
                         <Typography className={classes.channelUrl}>
@@ -371,6 +404,18 @@ function PostCard(props) {
                         <Typography className={classes.commentsText}>
                             <ChatBubbleIcon fontSize="small" className={classes.commentsIcon}/>{(props.post.posts) ? props.post.posts.length : 0} Comments 
                         </Typography>
+                        
+                    </div>
+                    <div>
+                      {(props.moderator) ? 
+                      <div>
+                        <br />
+                        <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0} className={classes.deletePostButton}>
+                          Delete
+                        </Button>
+                      </div>
+                      : null
+                      }
                     </div>
                 </Card>
             </Grid>
