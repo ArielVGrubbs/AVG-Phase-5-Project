@@ -436,15 +436,12 @@ function PostCard(props) {
                             {formContent}
                         </Typography></div> : 
                         <form onSubmit={(e) => handleFormSubmit(e)}>
-                          {/* <input placeholder='Title' id="title" style={{width: 600}} value={formTitle} onChange={(e) => handleFormChange(e)}/>
-                          <input placeholder='Text' id="content" style={{width: 600, height: 165}} value={formContent} onChange={(e) => handleFormChange(e)}/>
-                          <button type="submit">Post</button> */}
                           {(formTitle) ? 
-                            <input placeholder='Title(max 300)' value={formTitle} id="title" style={{width: 550}} className={classes.textInputs}/>
+                            <input placeholder='Title(max 300)' value={formTitle} onChange={(e) => setFormTitle(e.target.value)} id="title" style={{width: 550}} className={classes.textInputs}/>
                             : null
                           }
                           
-                          <textarea id="content" placeholder="Text(optional)" cols='80' rows='8' className={classes.textInputs} value={formContent}></textarea>
+                          <textarea id="content" placeholder="Text(optional)" cols='80' rows='8' className={classes.textInputs} value={formContent} onChange={(e) => setFormContent(e.target.value)}></textarea>
                           <button type="submit" className={classes.submitButton}>Edit</button>
                         </form>}
                         <Typography className={classes.commentsText}>

@@ -55,7 +55,7 @@ const postReducer = (state = initialState, action) => {
             likedPost.likes.push(action.like)
             return {
                 ...state,
-                allPosts: [...newAllPosts, likedPost]
+                allPosts: [likedPost, ...newAllPosts]
             }
         }
         case 'DISLIKE': {

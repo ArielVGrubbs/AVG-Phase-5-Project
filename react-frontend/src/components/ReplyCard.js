@@ -139,7 +139,7 @@ function ReplyCard(props) {
           border: '1px solid'
         },
         submitButton: {
-          marginLeft: theme.spacing(72.9),
+          marginLeft: theme.spacing(2),
           marginBottom: theme.spacing(1.7),
           marginTop: theme.spacing(1),
           height: theme.spacing(3.8),
