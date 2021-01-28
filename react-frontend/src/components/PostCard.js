@@ -369,8 +369,7 @@ function PostCard(props) {
 
   return (
     <React.Fragment>
-        
-            <Grid item key={props.post.id} >
+      <Grid item key={props.post.id} >
                 <Card className={classes.card} variant="outlined">
                     {(props.userPage) ? 
                       <div className={classes.cardActions}>
@@ -461,7 +460,7 @@ function PostCard(props) {
                       }
                     </div>
                 </Card>
-            </Grid>
+      </Grid>
     </React.Fragment>
   )
 }
