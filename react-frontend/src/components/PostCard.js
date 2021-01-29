@@ -387,15 +387,7 @@ function PostCard(props) {
                         <ArrowDropUpIcon onClick={(e) => handleUpVote(e)} fontSize='large' className={classes.likeArrow}/>
                         <Box className={classes.likeCounter}>{(props.post.likes) ? props.post.likes.length-props.post.dislikes.length : 0}</Box>
                         <ArrowDropDownIcon ml={0} onClick={(e) => handleDownVote(e)} fontSize='large' className={classes.likeArrow}/>
-                        {/* {(props.moderator) ? 
-                          <div>
-                            <br />
-                            <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
-                              Delete
-                            </Button>
-                          </div>
-                           : null
-                        } */}
+                        
                       </div> : 
                       <div>
                         <Box className={classes.selfLikeCounter}>
