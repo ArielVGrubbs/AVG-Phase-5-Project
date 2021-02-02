@@ -396,9 +396,6 @@ function PostCard(props) {
                             hel
                           </div>
                         </Box>
-                        <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
-                          Delete
-                        </Button>
                       </div>}
                     </div>}
                     <div className={classes.cardContent} >
