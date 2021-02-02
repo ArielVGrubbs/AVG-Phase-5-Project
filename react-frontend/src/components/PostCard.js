@@ -396,7 +396,6 @@ function PostCard(props) {
                             hel
                           </div>
                         </Box>
-                        <br />
                         <Button onClick={() => handleDelete()} size='medium' variant="contained" color="primary" ml={0}>
                           Delete
                         </Button>
