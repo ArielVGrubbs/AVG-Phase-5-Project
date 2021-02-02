@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 
 import Header from './Header'
 import PostCard from './PostCard';
-import ReplyCard from './ReplyCard'
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 
