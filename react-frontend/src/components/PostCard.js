@@ -211,7 +211,6 @@ function PostCard(props) {
     .then(res => res.json())
     .then(data => {
         console.log(data)
-        // debugger
         dispatch({type:'UPDATE_POST', post: data})
         setEditForm(false)
     })
@@ -228,17 +227,14 @@ function PostCard(props) {
     props.deletePost(props.post)
   }
 
-  const handleFormChange = (e) => {
-    if (e.target.id === 'title'){
-      setFormTitle(e.target.value)
-    } else {
-      setFormContent(e.target.value)
-    }
-  }
-
-  // const handleContentChange = (e) => {
-  //   setFormContent(e.target.value)
+  // const handleFormChange = (e) => {
+  //   if (e.target.id === 'title'){
+  //     setFormTitle(e.target.value)
+  //   } else {
+  //     setFormContent(e.target.value)
+  //   }
   // }
+
   const handleUpVote = (e) => {
     console.log(e.target)
     if(currentUser.dislikes.includes(dislike => dislike.post_id === props.post.id)){
