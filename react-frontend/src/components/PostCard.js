@@ -31,15 +31,10 @@ function PostCard(props) {
       marginRight: theme.spacing(2),
     },
     card: {
-      // minWidth: 200,
       width: 719.7,
-      // height:450,
       padding: 0,
       display: 'flex',
-      // flexDirection: 'column',
-      // justifyContent: 'space-evenly',
       alignContent: 'center',
-      // marginLeft: theme.spacing(30)
       margin: marginDeterminer,
       marginTop: theme.spacing(0),
       cursor: 'pointer',
@@ -58,13 +53,10 @@ function PostCard(props) {
       marginLeft: theme.spacing(.8),
       paddingTop: theme.spacing(0),
       paddingBottom: theme.spacing(0)
-      // justifyContent: 'space-evenly'
     },
     cardActions: {
       display: 'block',
-      // marginLeft: theme.spacing(.5),
       backgroundColor: '#F8F8F8',
-      // width: '35px',
       cursor: 'auto'
     },
     title: {
@@ -98,7 +90,6 @@ function PostCard(props) {
     titleLink: {
       color: '#222222',
       textDecoration: 'none',
-      // fontWeight: 'bold',
       fontSize: '18px'
     },
     likeArrow: {
@@ -124,7 +115,6 @@ function PostCard(props) {
     postedByLink: {
       color: '#A7A7A7',
       textDecoration: 'none',
-      // marginLeft: theme.spacing(.5)
     },
     commentsIcon: {
       fontSize: '15px',
@@ -138,7 +128,6 @@ function PostCard(props) {
     },
     saveIcon: {
       fontSize: '18px',
-      // paddingTop: theme.spacing(.5)
     },
     selfLikeCounter: {
       marginLeft: theme.spacing(1.5),
@@ -165,9 +154,6 @@ function PostCard(props) {
       color: '#848484',
     },
     deletePostButton: {
-      // display:'inline-flex',
-      // marginLeft: theme.spacing(48),
-      // marginBottom: theme.spacing(2),
       marginRight: theme.spacing(2),
       marginTop: theme.spacing(11),
       borderRadius: '20px',

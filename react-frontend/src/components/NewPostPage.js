@@ -131,7 +131,6 @@ function NewPostPage() {
             <div className={classes.topRibbon}>
                 Create a post
             </div>
-            {/* <hr className={classes.tobRibbonDivider}/> */}
             <Card className={classes.topRibbonDivider} variant="outlined"></Card>
             <Autocomplete
                         id="combo-box-demo"
