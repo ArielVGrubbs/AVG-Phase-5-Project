@@ -134,28 +134,10 @@ function NewChannelPage() {
             <div className={classes.topRibbon}>
                 Create a Channel
             </div>
-            {/* <hr className={classes.tobRibbonDivider}/> */}
             <Card className={classes.topRibbonDivider} variant="outlined"></Card>
-            {/* <Autocomplete
-                        id="combo-box-demo"
-                        options={channels}
-                        getOptionLabel={(option) => option.title}
-                        style={{ width: 300 }}
-                        className={classes.autocompleteSearch}
-                        renderInput={(params) => <TextField {...params} label="Choose a community" variant="outlined"/>}
-            /> */}
             <Card className={classes.card} variant="outlined">
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    {/* <Autocomplete
-                        id="combo-box-demo"
-                        options={channels}
-                        getOptionLabel={(option) => option.title}
-                        style={{ width: 300 }}
-                        className={classes.autocompleteSearch}
-                        renderInput={(params) => <TextField {...params} label="Choose a community" variant="outlined" />}
-                    /> */}
                     <input placeholder='Title(max 300)' id="title" style={{width: 683}} className={classes.textInputs}/>
-                    {/* <input placeholder='Text' id="content" style={{width: 627, height: 200}}/> */}
                     <textarea id="description" placeholder="Description(optional)" cols='100' rows='8' className={classes.textInputs}></textarea>
                     <button type="submit" className={classes.submitButton}>Create</button>
                 </form>
