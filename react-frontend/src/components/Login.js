@@ -44,12 +44,10 @@ import { useHistory } from "react-router-dom";
 
 
 function LoginForm() {
-
   const classes = useStyles();
   let history = useHistory();
 
   const dispatch = useDispatch();
-  // let noUser = false
 
   const [msg, setMsg] = useState(false);
 
@@ -76,7 +74,6 @@ function LoginForm() {
         localStorage.setItem('currentUserUsername', newUser.username)
         console.log(token)
         newUser.email = token['user_id']
-        // newUser.password = null
         dispatch({type: 'LOGIN', username:localStorage.getItem('currentUserUsername')})
         history.push('/dashboard')
       }
