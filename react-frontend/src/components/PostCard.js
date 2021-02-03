@@ -318,7 +318,6 @@ function PostCard(props) {
         .then(data => {
           console.log(data)
           dispatch({type:'DISLIKE', dislike:data})
-          // debugger
         })
       })
     } else {
