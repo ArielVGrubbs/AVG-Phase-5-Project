@@ -129,18 +129,6 @@ function NewChannelPage() {
         })
     }
     return (
-        // <div>
-        //     <Header />
-        //     <div className={classes.topRibbon}>
-        //         Create a channel 
-        //     </div>
-        //     <hr />
-        //     <p>Choose an original name for your new community, already taken names are not allowed.</p>
-        //     <form onSubmit={(e) => handleSubmit(e)}>                
-        //         <input placeholder='Title' id="title" style={{width: 627}} className={classes.textInputs}/>
-        //         <button type="submit">Submit</button>
-        //     </form>
-        // </div>
         <div>
             <Header />
             <div className={classes.topRibbon}>
