@@ -385,9 +385,6 @@ function PostCard(props) {
                               </Link>
                             </div>
                         </Typography>
-                        {/* <Typography >
-                          Posted by: <Link to={`/user/${props.post.user.username}`}>{(props.post.user) ? props.post.user.username : currentUser.username}</Link>
-                        </Typography> */}
                         <br />
                         {(!editForm) ? <div><Typography >
                             <Link to={`/posts/${props.post.id}`} className={classes.titleLink}>{formTitle}</Link>
