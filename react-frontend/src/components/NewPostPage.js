@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React from 'react';
 import {useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 
@@ -7,7 +7,6 @@ import Header from './Header'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import Checkbox from '@material-ui/core/Checkbox'
 import Card from '@material-ui/core/Card';
 
 const top100Films = [
