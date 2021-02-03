@@ -62,19 +62,13 @@ const useStyles = makeStyles((theme) => ({
           borderRadius: '5px'
       },
       card: {
-        // minWidth: 200,
         width: 717,
-        // height:450,
         padding: 0,
         display: 'block',
-        // flexDirection: 'column',
-        // justifyContent: 'space-evenly',
         alignContent: 'center',
         marginLeft: theme.spacing(33),
         marginBottom: theme.spacing(5),
         marginTop: theme.spacing(1.5),
-        // margin: 'auto',
-        // cursor: 'pointer',
         border: '1px solid',
         borderColor: '#C3C3C3'
       },
@@ -101,12 +95,6 @@ function NewChannelPage() {
     const channels = useSelector(state => state.channels.allChannels)
     const posts = useSelector(state => state.posts.allPosts)
 
-    // const clearForm = (e) => {
-    //     e.target.firstElementChild.firstElementChild.lastElementChild.firstElementChild.value = null
-    //     e.target.querySelector("#title").value = ''
-    //     e.target.querySelector("#content").value = ''
-    // }
-
     const handleSubmit = (e) => {
         e.preventDefault()
         fetch('http://localhost:3000/channels', {
@@ -124,7 +112,6 @@ function NewChannelPage() {
         .then(data => {
             console.log(data)
             dispatch({type:'ADD_CHANNEL', channel: data})
-            // debugger
             history.push('./channels')
         })
     }
