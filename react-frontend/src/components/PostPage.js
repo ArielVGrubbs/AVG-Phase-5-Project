@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
   },
   bottomRibbon: {
-    // display: 'flex',
     width: theme.spacing(110),
     backgroundColor: '#eeeeee',
     height: '100%',
