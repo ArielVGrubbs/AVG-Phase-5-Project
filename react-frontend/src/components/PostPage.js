@@ -100,7 +100,6 @@ const PostPage = () => {
 
     const URL = useParams()
     const allPosts = useSelector(state => state.posts.allPosts)
-    //   debugger
     const currentPost = allPosts.find(post => post.id === parseInt(URL.post_id))
     const [replyPost, setReplyPost] = useState(currentPost)
 
@@ -123,7 +122,6 @@ const PostPage = () => {
         .then(data => {
             console.log(data)
             dispatch({type: 'ADD_REPLY', reply: data})
-            // debugger
         })
     }
 
