@@ -36,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '14px',
     textAlign: 'left',
     paddingTop: theme.spacing(1),
-    // paddingBottom: theme.spacing(1),
     display: 'inline-flex'
   },
   textBoxIcon: {
