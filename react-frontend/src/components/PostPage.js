@@ -130,11 +130,9 @@ const PostPage = () => {
         <Header />
         <div className={classes.backdrop}>
           {(currentPost) ? <div>
-              {/* <p>Post Page {currentPost.id}</p>  */}
               <div className={classes.topRibbon}>
                 <SpeakerNotesIcon fontSize="small" className={classes.textBoxIcon}/>
                 <div className={classes.pageIntroText}>
-                  {/* <SpeakerNotesIcon fontSize="small" className={classes.textBoxIcon}/> */}
                   {currentPost.title}
                 </div>
               </div>
@@ -145,11 +143,6 @@ const PostPage = () => {
                       <div className={classes.commentAsText}>
                           Comment as <Link to={`/user/${currentUser.username}`} className={classes.commentAsLink}>{currentUser.username}</Link>
                       </div>
-                      
-                      {/* <form onSubmit={(e) => handleSubmit(e)} onClick={() => setReplyPost(currentPost)}>
-                          <input placeholder='What are your thoughts?' id="content" style={{width: 690, height: 200}}/>
-                          <button type="submit">Post</button>
-                      </form> */}
                       <form onSubmit={(e) => handleSubmit(e)} onClick={() => setReplyPost(currentPost)}>
                           <textarea id="content" placeholder="What are you thoughts?" cols='90' rows='9' className={classes.textInputs}></textarea>
                           <button type="submit" className={classes.submitButton}>Comment</button>
