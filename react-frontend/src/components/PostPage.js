@@ -86,7 +86,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(6),
     fontSize: '13px',
     color: '#979797',
-    // cursor: 'auto',
   },
   commentAsLink: {
     color: '#979797'
