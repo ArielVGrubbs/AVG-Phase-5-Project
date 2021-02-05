@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
   pageIntroText: {
     color: '#D0D0D0',
     fontSize: '14px',
-    // marginLeft: theme.spacing(4),
     textAlign: 'left',
     paddingTop: theme.spacing(1),
     // paddingBottom: theme.spacing(1),
