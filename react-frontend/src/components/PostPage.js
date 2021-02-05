@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#363636'
   },
   topRibbon: {
-    // display: 'flex',
     width: theme.spacing(110),
     backgroundColor: 'black',
     height: theme.spacing(5),
