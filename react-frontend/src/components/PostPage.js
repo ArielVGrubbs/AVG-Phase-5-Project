@@ -65,7 +65,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'block',
     fontFamily: 'Arial',
     margin: 'auto',
-    // margin: theme.spacing(1.7,0,.5,1.7),
     borderColor: '#E5E5E5',
     border: '1px solid'
   },
