@@ -146,6 +146,11 @@ function NewPostPage() {
                     <textarea id="content" placeholder="Text(optional)" cols='100' rows='8' className={classes.textInputs}></textarea>
                     <button type="submit" className={classes.submitButton}>Post</button>
                 </form>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <input placeholder='Title(max 300)' id="title" style={{width: 683}} className={classes.textInputs}/>
+                    <textarea id="content" placeholder="Text(optional)" cols='100' rows='8' className={classes.textInputs}></textarea>
+                    <button type="submit" className={classes.submitButton}>Post</button>
+                </form>
             </Card>
 
         </div>
