@@ -147,6 +147,10 @@ const PostPage = () => {
                           <textarea id="content" placeholder="What are you thoughts?" cols='90' rows='9' className={classes.textInputs}></textarea>
                           <button type="submit" className={classes.submitButton}>Comment</button>
                       </form>
+                      <form onSubmit={(e) => handleSubmit(e)} onClick={() => setReplyPost(currentPost)}>
+                          <textarea id="content" placeholder="What are you thoughts?" cols='90' rows='9' className={classes.textInputs}></textarea>
+                          <button type="submit" className={classes.submitButton}>Comment</button>
+                      </form>
                       <Grid container className={classes.pList} spacing={2}>
                           {(currentPost.posts) ? currentPost.posts.map(post => <ReplyCard key={post.id} post={post} handleSubmit={handleSubmit} setReplyPost={setReplyPost} parentWidth={770}/>) : null}
                       </Grid>
