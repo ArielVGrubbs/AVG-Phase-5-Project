@@ -119,6 +119,11 @@ function NewChannelPage() {
                     <textarea id="description" placeholder="Description(optional)" cols='100' rows='8' className={classes.textInputs}></textarea>
                     <button type="submit" className={classes.submitButton}>Create</button>
                 </form>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <input placeholder='Title(max 300)' id="title" style={{width: 683}} className={classes.textInputs}/>
+                    <textarea id="description" placeholder="Description(optional)" cols='100' rows='8' className={classes.textInputs}></textarea>
+                    <button type="submit" className={classes.submitButton}>Create</button>
+                </form>
             </Card>
 
         </div>
