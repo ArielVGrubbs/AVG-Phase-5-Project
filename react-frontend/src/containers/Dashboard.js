@@ -11,7 +11,7 @@ function Dashboard() {
     if (posts[0]){
         // debugger
         let posts1 = posts.filter(p => p.title)
-        posts2 = posts1.filter(p => p.title.includes(searchContent) || p.content.includes(searchContent))
+        posts2 = posts1.filter(p => p.title.toLowerCase().includes(searchContent.toLowerCase()) || p.content.includes(searchContent.toLowerCase()))
         // debugger
     } 
     posts.sort((a, b) => (a.likes.length > b.likes.length) ? -1 : 1)

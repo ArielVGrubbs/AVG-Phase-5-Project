@@ -291,35 +291,35 @@ function PostCard(props) {
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
       let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
       debugger
-      fetch(`http://localhost:3000/likes/${likeId}`, {
-        method: 'DELETE',
-        headers: {
-          "Content-Type": "application/json",
-          'Auth-Key': localStorage.getItem('auth_key')
-        }
-      })
-      .then(res => res.json())
-      .then(likeData => {
-        console.log(likeData)
-        debugger
-        dispatch({type: 'UNLIKE', like: likeData})
-        fetch('http://localhost:3000/dislikes', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Auth-Key': localStorage.getItem('auth_key')
-          },
-          body: JSON.stringify({
-            user_id: currentUser.id,
-            post_id: props.post.id
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          dispatch({type:'DISLIKE', dislike:data})
-        })
-      })
+      // fetch(`http://localhost:3000/likes/${likeId}`, {
+      //   method: 'DELETE',
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     'Auth-Key': localStorage.getItem('auth_key')
+      //   }
+      // })
+      // .then(res => res.json())
+      // .then(likeData => {
+      //   console.log(likeData)
+      //   debugger
+      //   dispatch({type: 'UNLIKE', like: likeData})
+      //   fetch('http://localhost:3000/dislikes', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //       'Auth-Key': localStorage.getItem('auth_key')
+      //     },
+      //     body: JSON.stringify({
+      //       user_id: currentUser.id,
+      //       post_id: props.post.id
+      //     })
+      //   })
+      //   .then(res => res.json())
+      //   .then(data => {
+      //     console.log(data)
+      //     dispatch({type:'DISLIKE', dislike:data})
+      //   })
+      // })
     } else {
       fetch('http://localhost:3000/dislikes', {
         method: 'POST',

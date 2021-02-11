@@ -26,6 +26,13 @@ class LikesController < ApplicationController
         end
     end
 
+    def unlike_like
+        
+    end
+
+    def undislike_like
+    end
+
     # def update
     #     like = Like.find(params[:id])
     #     like.update_attributes(like_params)
