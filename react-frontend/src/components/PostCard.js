@@ -237,10 +237,10 @@ function PostCard(props) {
 
   const handleUpVote = (e) => {
     console.log(e.target)
-    debugger
+    // debugger
     if(currentUser.dislikes.find(dislike => dislike.post_id === props.post.id)){
       let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
-      debugger
+      // debugger
       fetch(`http://localhost:3000/undislike_like`,{
         method: 'POST',
         headers: {
@@ -255,7 +255,7 @@ function PostCard(props) {
       .then(res => res.json())
       .then(dislikeData => {
         console.log(dislikeData)
-        debugger
+        // debugger
         // dispatch({type:'UNDISLIKE', dislike:dislikeData})
         // dispatch({type:'LIKE', like:data})
       })
@@ -308,9 +308,10 @@ function PostCard(props) {
 
   const handleDownVote = (e) => {
     console.log(e.target)
+    debugger
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
-      debugger
       let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
+      debugger
       fetch(`http://localhost:3000/unlike_like`,{
         method: 'POST',
         headers: {

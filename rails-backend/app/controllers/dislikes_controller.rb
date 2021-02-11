@@ -27,6 +27,19 @@ class DislikesController < ApplicationController
         end
     end
 
+    def unlike_like
+        byebug
+        Like.destroy(params[:like_id])
+        dislike = Dislike.new(dislike_params)
+        byebug
+        if dislike.save
+            byebug
+            render json: dislike, include: [:user, :post]
+        else
+            render:json => { :msg => "Dislike creation failed.." }, :status => :bad_request
+        end
+    end
+
     # def update
     #     like = Like.find(params[:id])
     #     like.update_attributes(like_params)
