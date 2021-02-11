@@ -27,10 +27,11 @@ class LikesController < ApplicationController
     end
 
     def unlike_like
-        
+        byebug
     end
 
     def undislike_like
+        byebug
     end
 
     # def update
@@ -52,6 +53,6 @@ class LikesController < ApplicationController
     private
 
     def like_params
-        params.require(:like).permit(:post_id, :user_id)
+        params.require(:like).permit(:post_id, :user_id, :like_id, :dislike_id)
     end
 end

@@ -237,7 +237,9 @@ function PostCard(props) {
 
   const handleUpVote = (e) => {
     console.log(e.target)
-    if(currentUser.dislikes.includes(dislike => dislike.post_id === props.post.id)){
+    debugger
+    if(currentUser.dislikes.find(dislike => dislike.post_id === props.post.id)){
+      debugger
       let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
       fetch(`http://localhost:3000/undislike_like`,{
         method: 'POST',
@@ -253,23 +255,9 @@ function PostCard(props) {
       .then(res => res.json())
       .then(dislikeData => {
         console.log(dislikeData)
-        dispatch({type:'UNDISLIKE', dislike:dislikeData})
-        fetch('http://localhost:3000/likes', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Auth-Key': localStorage.getItem('auth_key')
-          },
-          body: JSON.stringify({
-            user_id: currentUser.id,
-            post_id: props.post.id
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          dispatch({type:'LIKE', like:data})
-        })
+        debugger
+        // dispatch({type:'UNDISLIKE', dislike:dislikeData})
+        // dispatch({type:'LIKE', like:data})
       })
       // fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
       //   method: 'DELETE',
@@ -321,7 +309,26 @@ function PostCard(props) {
   const handleDownVote = (e) => {
     console.log(e.target)
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
+      debugger
       let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
+      fetch(`http://localhost:3000/unlike_like`,{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          post_id: props.post.id,
+          like_id: likeId
+        })
+      })
+      .then(res => res.json())
+      .then(likeData => {
+        console.log(likeData)
+        debugger
+        // dispatch({type:'UNDISLIKE', dislike:dislikeData})
+        // dispatch({type:'LIKE', like:data})
+      })
       // debugger
       // fetch(`http://localhost:3000/likes/${likeId}`, {
       //   method: 'DELETE',
