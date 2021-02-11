@@ -239,8 +239,8 @@ function PostCard(props) {
     console.log(e.target)
     debugger
     if(currentUser.dislikes.find(dislike => dislike.post_id === props.post.id)){
-      debugger
       let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
+      debugger
       fetch(`http://localhost:3000/undislike_like`,{
         method: 'POST',
         headers: {
