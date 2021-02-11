@@ -290,7 +290,7 @@ function PostCard(props) {
     console.log(e.target)
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
       let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
-      debugger
+      // debugger
       // fetch(`http://localhost:3000/likes/${likeId}`, {
       //   method: 'DELETE',
       //   headers: {
