@@ -239,6 +239,38 @@ function PostCard(props) {
     console.log(e.target)
     if(currentUser.dislikes.includes(dislike => dislike.post_id === props.post.id)){
       let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
+      fetch(`http://localhost:3000/undislike_like`,{
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          post_id: props.post.id,
+          dislike_id: dislikeId
+        })
+      })
+      .then(res => res.json())
+      .then(dislikeData => {
+        console.log(dislikeData)
+        dispatch({type:'UNDISLIKE', dislike:dislikeData})
+        fetch('http://localhost:3000/likes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Auth-Key': localStorage.getItem('auth_key')
+          },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            post_id: props.post.id
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          dispatch({type:'LIKE', like:data})
+        })
+      })
       // fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
       //   method: 'DELETE',
       //   headers: {
