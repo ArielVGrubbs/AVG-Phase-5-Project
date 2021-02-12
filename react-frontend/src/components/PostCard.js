@@ -305,10 +305,8 @@ function PostCard(props) {
 
   const handleDownVote = (e) => {
     console.log(e.target)
-    // debugger
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
       let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
-      // debugger
       fetch(`http://localhost:3000/unlike_like`,{
         method: 'POST',
         headers: {
@@ -323,11 +321,9 @@ function PostCard(props) {
       .then(res => res.json())
       .then(likeData => {
         console.log(likeData)
-        // debugger
         dispatch({type: 'UNLIKE_LIKE', like: likeData})
         // dispatch({type:'DISLIKE', dislike:data})
       })
-      // debugger
       // fetch(`http://localhost:3000/likes/${likeId}`, {
       //   method: 'DELETE',
       //   headers: {
@@ -338,7 +334,6 @@ function PostCard(props) {
       // .then(res => res.json())
       // .then(likeData => {
       //   console.log(likeData)
-      //   debugger
       //   dispatch({type: 'UNLIKE', like: likeData})
       //   fetch('http://localhost:3000/dislikes', {
       //     method: 'POST',
