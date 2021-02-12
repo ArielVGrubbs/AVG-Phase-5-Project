@@ -237,10 +237,8 @@ function PostCard(props) {
 
   const handleUpVote = (e) => {
     console.log(e.target)
-    // debugger
     if(currentUser.dislikes.find(dislike => dislike.post_id === props.post.id)){
       let dislikeId = currentUser.dislikes.find(dislike => dislike.post_id === props.post.id).id
-      // debugger
       fetch(`http://localhost:3000/undislike_like`,{
         method: 'POST',
         headers: {
@@ -255,8 +253,7 @@ function PostCard(props) {
       .then(res => res.json())
       .then(dislikeData => {
         console.log(dislikeData)
-        // debugger
-        // dispatch({type:'UNDISLIKE', dislike:dislikeData})
+        dispatch({type:'UNDISLIKE_LIKE', changes:{dislike:dislikeId, like:dislikeData}})
         // dispatch({type:'LIKE', like:data})
       })
       // fetch(`http://localhost:3000/dislikes/${dislikeId}`, {
@@ -308,10 +305,10 @@ function PostCard(props) {
 
   const handleDownVote = (e) => {
     console.log(e.target)
-    debugger
+    // debugger
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
       let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
-      debugger
+      // debugger
       fetch(`http://localhost:3000/unlike_like`,{
         method: 'POST',
         headers: {
@@ -326,9 +323,9 @@ function PostCard(props) {
       .then(res => res.json())
       .then(likeData => {
         console.log(likeData)
-        debugger
-        // dispatch({type:'UNDISLIKE', dislike:dislikeData})
-        // dispatch({type:'LIKE', like:data})
+        // debugger
+        dispatch({type: 'UNLIKE_LIKE', like: likeData})
+        // dispatch({type:'DISLIKE', dislike:data})
       })
       // debugger
       // fetch(`http://localhost:3000/likes/${likeId}`, {
