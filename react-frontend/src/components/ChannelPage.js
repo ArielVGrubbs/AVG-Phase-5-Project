@@ -174,7 +174,6 @@ const ChannelPage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                // debugger
                 // dispatch({type: 'SET_JOINED', joined: false})
                 console.log(`You have successfully left /r/${currentChannel.title}'s membership.`)
             })
@@ -195,7 +194,6 @@ const ChannelPage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                debugger
                 // dispatch({type: 'SET_JOINED', joined: true})
                 console.log(`You have successfully become a member of /r/${currentChannel.title}.`)
             })
