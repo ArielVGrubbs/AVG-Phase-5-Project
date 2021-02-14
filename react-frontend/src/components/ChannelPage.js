@@ -195,7 +195,7 @@ const ChannelPage = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                // debugger
+                debugger
                 // dispatch({type: 'SET_JOINED', joined: true})
                 console.log(`You have successfully become a member of /r/${currentChannel.title}.`)
             })

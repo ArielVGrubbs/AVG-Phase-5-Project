@@ -141,7 +141,7 @@ const Header = (props) => {
 
   const handleSearchChange = (e) => {
     e.preventDefault()
-    // debugger
+    debugger
     props.setSearchContent(e.target.value)
   }
 
