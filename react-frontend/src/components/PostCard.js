@@ -306,7 +306,7 @@ function PostCard(props) {
   const handleDownVote = (e) => {
     console.log(e.target)
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
-      let likeId = currentUser.likes.find(like => like.post_id === props.post.id).id
+      let tempLike = currentUser.likes.find(like => like.post_id === props.post.id)
       fetch(`http://localhost:3000/unlike_like`,{
         method: 'POST',
         headers: {
@@ -315,13 +315,13 @@ function PostCard(props) {
         body: JSON.stringify({
           user_id: currentUser.id,
           post_id: props.post.id,
-          like_id: likeId
+          like_id: tempLike.id
         })
       })
       .then(res => res.json())
-      .then(likeData => {
-        console.log(likeData)
-        dispatch({type: 'UNLIKE_LIKE', like: likeData})
+      .then(dislikeData => {
+        console.log(dislikeData)
+        dispatch({type: 'UNLIKE_LIKE', dislike: dislikeData, like: tempLike})
         // dispatch({type:'DISLIKE', dislike:data})
       })
       // fetch(`http://localhost:3000/likes/${likeId}`, {
@@ -404,7 +404,7 @@ function PostCard(props) {
                       </div>}
                     </div>}
                     <div className={classes.cardContent} >
-                        <Typography className={classes.channelUrl}>
+                        <div className={classes.channelUrl}>
                             {(props.post.postable_type === 'Channel') 
                             ? 'r/' : null }
                             {(props.post.postable) 
@@ -416,7 +416,7 @@ function PostCard(props) {
                                 {(props.post.user) ? props.post.user.username : currentUser.username}
                               </Link>
                             </div>
-                        </Typography>
+                        </div>
                         <br />
                         {(!editForm) ? <div><Typography >
                             <Link to={`/posts/${props.post.id}`} className={classes.titleLink}>{formTitle}</Link>

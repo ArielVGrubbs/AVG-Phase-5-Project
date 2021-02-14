@@ -129,6 +129,9 @@ const useStyles = makeStyles((theme) => ({
     emailText: {
         marginLeft: theme.spacing(2),
         fontSize: '13px',
+    },
+    userButtonsContainer: {
+        margin: theme.spacing(2,0,2,0)
     }
 }));
 
@@ -251,11 +254,11 @@ const UserPage = () => {
                         {
                         (localStorage.getItem('currentUserUsername') !== URL.username) 
                         ? 
-                        <p>
+                        <div className={classes.userButtonsContainer}>
                             <Button onClick={(e) => setShowModerator(!showModerator)} className={classes.userButtons} color="primary" variant="contained" disableElevation>Make Moderator</Button>
                             <Button onClick={(e) => setShowBan(!showBan)} className={classes.userButtons} color="primary" variant="contained" disableElevation>Ban User From Channel</Button>
                             <Button onClick={() => showLikedPosts()} className={classes.userButtons} color="primary" variant="contained" disableElevation>Liked Posts</Button>
-                        </p> 
+                        </div> 
                         : 
                         <p>
                             <Button onClick={() => showLikedPosts()} className={classes.userButtons} color="primary" variant="contained" disableElevation>Liked Posts</Button>
