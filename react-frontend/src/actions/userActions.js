@@ -24,3 +24,5 @@ export const login = (user) => {
         users: users
     }
   }
+
+// Completely useless, when I want to make a new dispatch I'll just do it in place.
