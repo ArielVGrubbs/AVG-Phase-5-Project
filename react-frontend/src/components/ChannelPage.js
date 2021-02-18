@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.error.main,
     display: 'flex',
     marginLeft: theme.spacing(3),
-    // outlineWidth: theme.spacing(.5)
     borderRadius: '20px',
     border: '1px solid'
     },
