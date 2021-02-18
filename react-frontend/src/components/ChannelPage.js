@@ -159,7 +159,6 @@ const ChannelPage = () => {
     
     const handleJoin = (e) => {
         console.log(e.target)
-        // setJoined(!joined)
         if (stateJoined){
             // dispatch({type: 'SET_JOINED', joined: false})
             // setJoined(false)
