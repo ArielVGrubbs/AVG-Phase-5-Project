@@ -25,4 +25,5 @@ export const login = (user) => {
     }
   }
 
-// Completely useless, when I want to make a new dispatch I'll just do it in place. There's no need to come to this file and then write a whole function then export it and import it where I want to use the dispatch. It's just inefficient.
+// Completely useless, when I want to make a new dispatch I'll just do it in place. 
+// There's no need to come to this file and then write a whole function then export it and import it where I want to use the dispatch. It's just inefficient.
