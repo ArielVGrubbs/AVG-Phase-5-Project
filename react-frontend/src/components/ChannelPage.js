@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'center',
     marginLeft: theme.spacing(33.9),
     marginBottom: theme.spacing(5),
-    // cursor: 'pointer',
     border: '1px solid',
     borderColor: '#C3C3C3'
   },
