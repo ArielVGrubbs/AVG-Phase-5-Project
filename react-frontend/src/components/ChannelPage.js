@@ -16,13 +16,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'black'
   },
   card: {
-    // minWidth: 200,
     width: 717,
-    // height:450,
     padding: 0,
     display: 'block',
-    // flexDirection: 'column',
-    // justifyContent: 'space-evenly',
     alignContent: 'center',
     marginLeft: theme.spacing(33.9),
     marginBottom: theme.spacing(5),
