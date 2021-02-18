@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
-        // paddingTop: theme.spacing(2),
         color: '#8B8B8B'
     },
     topBackDrop: {
