@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
     bottomBackDrop: {
         width: '100%',
-        height: '100%', //theme.spacing(200),
+        height: '100%',
         backgroundColor: '#273c75'
     },
     channelRibbon: {
