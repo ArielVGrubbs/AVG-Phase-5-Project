@@ -69,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: theme.spacing(38),
     },
     channelTitle: {
-        // marginLeft: theme.spacing(19),
         paddingTop: theme.spacing(2),
         fontSize: '30px',
         fontWeight: 'bold',
