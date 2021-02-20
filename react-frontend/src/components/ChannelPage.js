@@ -92,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
         flexFlow: 'row wrap',
         paddingBottom: theme.spacing(3),
-        // marginLeft: theme.spacing(10)
     }
 }));
 
