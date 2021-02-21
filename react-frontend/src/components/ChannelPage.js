@@ -111,10 +111,6 @@ const ChannelPage = () => {
 
     const stateJoined = useSelector(state => state.user.joined)
 
-    // useEffect(() => {
-
-    // }, [stateJoined])
-
     const [moderator, setModerator] = useState(false)
 
     let currentChannelPosts = false
