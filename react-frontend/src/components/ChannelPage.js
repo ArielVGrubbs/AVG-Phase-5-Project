@@ -112,7 +112,7 @@ const ChannelPage = () => {
     const stateJoined = useSelector(state => state.user.joined)
 
     // useEffect(() => {
-    //     setJoined(stateJoined)
+
     // }, [stateJoined])
 
     const [moderator, setModerator] = useState(false)
