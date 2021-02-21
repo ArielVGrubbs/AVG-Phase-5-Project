@@ -110,7 +110,6 @@ const ChannelPage = () => {
     const userFetch = useSelector(state => state.user.userFetch)
 
     const stateJoined = useSelector(state => state.user.joined)
-    // const [joined, setJoined] = useState(stateJoined)
 
     // useEffect(() => {
     //     setJoined(stateJoined)
