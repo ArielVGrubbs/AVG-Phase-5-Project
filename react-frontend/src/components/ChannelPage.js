@@ -129,11 +129,9 @@ const ChannelPage = () => {
     }
 
     if(currentChannel){
-        // debugger
         if(currentChannel.channel_owners.find(c_o => c_o.user_id === currentUser.id) && moderator === false){
             setModerator(true)
         } else if(!currentChannel.channel_owners.find(c_o => c_o.user_id === currentUser.id) && moderator === true){
-            // debugger
             setModerator(false)
         }
     }
