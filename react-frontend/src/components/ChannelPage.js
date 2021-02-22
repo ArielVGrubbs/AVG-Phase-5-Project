@@ -118,7 +118,6 @@ const ChannelPage = () => {
 
     if(userFetch){
         currentChannel = allChannels.find(channel => channel.title === URL.channel_title)
-        // debugger
         if(currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id) && stateJoined === false){
             console.log("I'm an asshole if statement")
             dispatch({type: 'SET_JOINED', joined: true})
