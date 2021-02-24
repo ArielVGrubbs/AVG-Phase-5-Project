@@ -153,6 +153,7 @@ const ChannelPage = () => {
             .then(data => {
                 console.log(data)
                 // dispatch({type: 'SET_JOINED', joined: false})
+                // see above comment
                 console.log(`You have successfully left /r/${currentChannel.title}'s membership.`)
             })
         } else {
