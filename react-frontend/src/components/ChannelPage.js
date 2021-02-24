@@ -158,6 +158,7 @@ const ChannelPage = () => {
             })
         } else {
             // dispatch({type: 'SET_JOINED', joined: true})
+            // see above comment
             fetch(`http://localhost:3000/channel_members`, {
                 method: 'POST',
                 headers: {
