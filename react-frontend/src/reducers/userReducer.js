@@ -9,6 +9,7 @@ const initialState = {
     notifications: [],
     userFetch: false,
     // joined: false
+    // I think this is no longer in use.
 }
 
 const userReducer = (state = initialState, action) => {
