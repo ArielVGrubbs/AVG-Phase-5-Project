@@ -44,15 +44,15 @@ const userReducer = (state = initialState, action) => {
                 currentUser: cU
             }
         }
-        case 'SET_JOINED': {
-            return {
-                ...state,
-                joined: action.joined
-            }
-        }
-        Outdated dispatch, user interaction side of this dispatch 
-        has already been commented out for a while du to being 
-        problematic.
+        // case 'SET_JOINED': {
+        //     return {
+        //         ...state,
+        //         joined: action.joined
+        //     }
+        // }
+        // Outdated dispatch, user interaction side of this dispatch 
+        // has already been commented out for a while du to being 
+        // problematic.
         case 'BAN_USER': {
             let newAllUsers = state.allUsers.filter(u => u.id !== action.channelMember.user_id)
             let bannedUser = state.allUsers.find(u => u.id === action.channelMember.user_id)
