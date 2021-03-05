@@ -77,15 +77,15 @@ const postReducer = (state = initialState, action) => {
                 allPosts: [...newAllPosts, unlikedPost]
             }
         }
-        case 'UNDISLIKE': {
-            let newAllPosts = state.allPosts.filter(post => post.id !== action.dislike.post_id)
-            let undislikedPost = state.allPosts.find(post => post.id === action.dislike.post_id)
-            undislikedPost.dislikes.filter(li => li.post_id !== action.dislike.post_id)
-            return {
-                ...state,
-                allPosts: [...newAllPosts, undislikedPost]
-            }
-        }
+        // case 'UNDISLIKE': {
+        //     let newAllPosts = state.allPosts.filter(post => post.id !== action.dislike.post_id)
+        //     let undislikedPost = state.allPosts.find(post => post.id === action.dislike.post_id)
+        //     undislikedPost.dislikes.filter(li => li.post_id !== action.dislike.post_id)
+        //     return {
+        //         ...state,
+        //         allPosts: [...newAllPosts, undislikedPost]
+        //     }
+        // }
         default:
             return state;
   
