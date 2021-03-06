@@ -139,8 +139,8 @@ const ChannelPage = () => {
     const handleJoin = (e) => {
         console.log(e.target)
         if (stateJoined){
-            dispatch({type: 'SET_JOINED', joined: false})
-            I think that this setJoined dispatch is antiquted, needs confirmation.
+            // dispatch({type: 'SET_JOINED', joined: false})
+            // I think that this setJoined dispatch is antiquted, needs confirmation.
             let chanMem = currentChannel.channel_members.find(c_m => c_m.user_id === currentUser.id)
             fetch(`http://localhost:3000/channel_members/${chanMem.id}`, {
                 method: 'DELETE',
