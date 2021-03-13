@@ -7,6 +7,7 @@ class ChannelMembersController < ApplicationController
     def show
         channel_member = ChannelMember.find_by(id: params[:id])
         if channel_member
+            # byebug
             render json: channel_member.slice(:id, :channel_id, :user_id)
         else
             render json: { message: 'Item not found' }
@@ -15,6 +16,7 @@ class ChannelMembersController < ApplicationController
 
     def create
         channel_member = ChannelMember.new(channel_member_params)
+        # byebug
         channel_member.save
         render json: channel_member
     end
