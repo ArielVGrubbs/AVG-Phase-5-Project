@@ -17,8 +17,8 @@ class ChannelMembersController < ApplicationController
     def create
         channel_member = ChannelMember.new(channel_member_params)
         # byebug
-        channel_member.save
-        render json: channel_member
+        # channel_member.save
+        # render json: channel_member
     end
 
     def update
