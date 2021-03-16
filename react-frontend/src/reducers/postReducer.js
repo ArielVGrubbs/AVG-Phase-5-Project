@@ -77,25 +77,25 @@ const postReducer = (state = initialState, action) => {
                 allPosts: [...newAllPosts, dislikedPost]
             }
         }
-        case 'UNLIKE': {
-            let newAllPosts = state.allPosts.filter(post => post.id !== action.like.post_id)
-            let unlikedPost = state.allPosts.find(post => post.id === action.like.post_id)
-            unlikedPost.likes.filter(li => li.post_id !== action.like.post_id)
-            unlikedPost.dislikes.push(action.dislike)
-            return {
-                ...state,
-                allPosts: [...newAllPosts, unlikedPost]
-            }
-        }
-        case 'UNDISLIKE': {
-            let newAllPosts = state.allPosts.filter(post => post.id !== action.dislike.post_id)
-            let undislikedPost = state.allPosts.find(post => post.id === action.dislike.post_id)
-            undislikedPost.dislikes.filter(li => li.post_id !== action.dislike.post_id)
-            return {
-                ...state,
-                allPosts: [...newAllPosts, undislikedPost]
-            }
-        }
+        // case 'UNLIKE': {
+        //     let newAllPosts = state.allPosts.filter(post => post.id !== action.like.post_id)
+        //     let unlikedPost = state.allPosts.find(post => post.id === action.like.post_id)
+        //     unlikedPost.likes.filter(li => li.post_id !== action.like.post_id)
+        //     unlikedPost.dislikes.push(action.dislike)
+        //     return {
+        //         ...state,
+        //         allPosts: [...newAllPosts, unlikedPost]
+        //     }
+        // }
+        // case 'UNDISLIKE': {
+        //     let newAllPosts = state.allPosts.filter(post => post.id !== action.dislike.post_id)
+        //     let undislikedPost = state.allPosts.find(post => post.id === action.dislike.post_id)
+        //     undislikedPost.dislikes.filter(li => li.post_id !== action.dislike.post_id)
+        //     return {
+        //         ...state,
+        //         allPosts: [...newAllPosts, undislikedPost]
+        //     }
+        // }
         default:
             return state;
   
