@@ -27,7 +27,7 @@ class DislikesController < ApplicationController
         end
     end
 
-    def unlike_like
+    def unlike_dislike
         Like.destroy(params[:like_id])
         dislike = Dislike.new(dislike_params)
         if dislike.save

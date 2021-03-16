@@ -307,7 +307,7 @@ function PostCard(props) {
     console.log(e.target)
     if(currentUser.likes.find(like => like.post_id === props.post.id)){
       let tempLike = currentUser.likes.find(like => like.post_id === props.post.id)
-      fetch(`http://localhost:3000/unlike_like`,{
+      fetch(`http://localhost:3000/unlike_dislike`,{
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
@@ -321,7 +321,7 @@ function PostCard(props) {
       .then(res => res.json())
       .then(dislikeData => {
         console.log(dislikeData)
-        dispatch({type: 'UNLIKE_LIKE', dislike: dislikeData, like: tempLike})
+        dispatch({type: 'UNLIKE_DISLIKE', dislike: dislikeData, like: tempLike})
         // dispatch({type:'DISLIKE', dislike:data})
       })
       // fetch(`http://localhost:3000/likes/${likeId}`, {
