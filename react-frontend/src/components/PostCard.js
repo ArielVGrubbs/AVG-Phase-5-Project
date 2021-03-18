@@ -227,13 +227,13 @@ function PostCard(props) {
     props.deletePost(props.post)
   }
 
-  const handleFormChange = (e) => {
-    if (e.target.id === 'title'){
-      setFormTitle(e.target.value)
-    } else {
-      setFormContent(e.target.value)
-    }
-  }
+  // const handleFormChange = (e) => {
+  //   if (e.target.id === 'title'){
+  //     setFormTitle(e.target.value)
+  //   } else {
+  //     setFormContent(e.target.value)
+  //   }
+  // }
 
   const handleUpVote = (e) => {
     console.log(e.target)
