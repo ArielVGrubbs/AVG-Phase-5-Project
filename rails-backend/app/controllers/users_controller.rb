@@ -7,18 +7,18 @@ class UsersController < ApplicationController
         render :json => { :auth_key => token }, :status => :ok
     end
 
-    def ariel
-        @hardworker = User.find_by(name: "Ariel Grubbs")
-        @teamwork = @hardworker[:priorities][0]
-        @efficiency = @hardworker[:priorities][1]
-        @creativity = @hardworker[:priorities][2]
-        if params[:what_you_look_for_in_an_employee] == "A skilled coder who is dedicated to getting work done."
-            render json: { message: `You should hire #{@hardworker[:name]}.
-                            He cares about #{@teamwork}, #{@efficiency} and #{@creativity}` }
-        else
-            render json: { message: `#{@hardworker[:name]}can adapt to any workplace environment or culture.` }
-        end
-    end
+    # def ariel
+    #     @hardworker = User.find_by(name: "Ariel Grubbs")
+    #     @teamwork = @hardworker[:priorities][0]
+    #     @efficiency = @hardworker[:priorities][1]
+    #     @creativity = @hardworker[:priorities][2]
+    #     if params[:what_you_look_for_in_an_employee] == "A skilled coder who is dedicated to getting work done."
+    #         render json: { message: `You should hire #{@hardworker[:name]}.
+    #                         He cares about #{@teamwork}, #{@efficiency} and #{@creativity}` }
+    #     else
+    #         render json: { message: `#{@hardworker[:name]}can adapt to any workplace environment or culture.` }
+    #     end
+    # end
 
     def index
         users = User.all
