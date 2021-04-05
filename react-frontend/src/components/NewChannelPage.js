@@ -47,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
           borderColor: '#E5E5E5',
           border: '1px solid'
       },
-      autocompleteSearch: {
-          backgroundColor: 'white',
-          marginLeft: theme.spacing(33),
-          borderRadius: '5px'
-      },
+    //   autocompleteSearch: {
+    //       backgroundColor: 'white',
+    //       marginLeft: theme.spacing(33),
+    //       borderRadius: '5px'
+    //   },
       card: {
         width: 717,
         padding: 0,
