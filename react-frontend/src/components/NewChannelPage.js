@@ -29,17 +29,17 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         margin: theme.spacing(5,0,0,33),
       },
-    //   topRibbonDivider: {
-    //     width: 717,
-    //     padding: 0,
-    //     display: 'block',
-    //     alignContent: 'center',
-    //     marginLeft: theme.spacing(33),
-    //     marginBottom: theme.spacing(1.5),
-    //     marginTop: theme.spacing(1.5),
-    //     border: '0.2px solid',
-    //     borderColor: '#FFFFFF'
-    //   },
+      topRibbonDivider: {
+        width: 717,
+        padding: 0,
+        display: 'block',
+        alignContent: 'center',
+        marginLeft: theme.spacing(33),
+        marginBottom: theme.spacing(1.5),
+        marginTop: theme.spacing(1.5),
+        border: '0.2px solid',
+        borderColor: '#FFFFFF'
+      },
       textInputs: {
           display: 'block',
           fontFamily: 'Arial',
